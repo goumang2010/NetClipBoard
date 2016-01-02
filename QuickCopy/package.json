@@ -1,0 +1,16 @@
+{
+  "name": "QuickCopy",
+  "version": "0.0.0",
+  "description": "QuickCopy",
+  "main": "app.js",
+  "author": {
+    "name": "gouma",
+    "email": ""
+  },
+  "dependencies": {
+    "express": "3.4.4",
+    "jade": "*",
+    "mongoose": "^4.3.4",
+    "stylus": "*"
+  }
+}
