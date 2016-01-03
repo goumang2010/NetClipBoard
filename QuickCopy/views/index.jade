@@ -10,8 +10,8 @@ block content
         .col-md-8
             p="dsadasfc"
       .row
-        form.formgroup
+        form.formgroup(method="POST",action="/addnote")
           .form-group
             label(for="name")="请输入要寄存的内容"
-            textarea.form-control(rows="3",style="max-width:100%;height:200px;")
+            textarea.form-control(name="noteText" rows="3" style="max-width:100%;height:200px;")
             button.btn.btn-default="提交"

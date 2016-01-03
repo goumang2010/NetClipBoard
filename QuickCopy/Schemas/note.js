@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 var NoteSchema = new mongoose.Schema({
-    userID: String,
-    fetchKey: String,
+    userIP: String,
+    //fetchKey: String,
+    noteText: String,
     meta: {
         createAt: {
             type: Date,
@@ -13,13 +14,14 @@ var NoteSchema = new mongoose.Schema({
         }
     }
 });
-NoteSchema.pre('save', function () {
+NoteSchema.pre('save', function (next) {
     if (this.isNew) {
         this.meta.createAt = this.meta.updateAt = Date.now();
     }
     else {
         this.meta.updateAt = Date.now();
     }
+    next();
 });
 NoteSchema.static("fetch", function (cb) {
     return this

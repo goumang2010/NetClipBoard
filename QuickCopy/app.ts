@@ -2,8 +2,11 @@
 import routes = require('./routes/index');
 import http = require('http');
 import path = require('path');
-
+import mongoose = require('mongoose');
 var app = express();
+
+var dbUrl = 'mongodb://localhost/netnote'
+mongoose.connect(dbUrl);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -23,11 +26,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // development only
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
+
+    mongoose.set('debug', true);
 }
 
 app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
+app.post('/addnote', routes.addnote);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
