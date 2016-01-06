@@ -3,6 +3,10 @@ import routes = require('./routes/index');
 import http = require('http');
 import path = require('path');
 import mongoose = require('mongoose');
+
+
+
+
 var app = express();
 
 var dbUrl = 'mongodb://localhost/netnote'

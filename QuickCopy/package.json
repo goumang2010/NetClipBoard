@@ -11,6 +11,7 @@
     "express": "3.4.4",
     "jade": "*",
     "mongoose": "^4.3.4",
+    "node-gyp": "^3.2.1",
     "stylus": "*"
   }
 }
