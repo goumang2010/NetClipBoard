@@ -7,6 +7,10 @@ html
     link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
     script(src='/javascripts/modernizr-2.6.2.js')
+    script(src='/javascripts/jquery-2.1.4.js')
+    script(src="/jquery.qrcode/jquery.qrcode.min.js") 
+    script(src='/javascripts/jquery.unobtrusive-ajax.js')
+    script(src="/self/Index.Ajax.js") 
   body
     .navbar.navbar-inverse.navbar-fixed-top
       .container
@@ -29,11 +33,9 @@ html
       hr
       footer
         p &copy; #{year} - My Express Application
-
-    script(src='/javascripts/jquery-2.1.4.js')
-    script(src='/javascripts/jquery.unobtrusive-ajax.js')
+    
+    
     script(src='/javascripts/bootstrap.js')
     script(src='/javascripts/respond.js')
-    script(src="/jquery.qrcode/jquery.qrcode.min.js") 
-    script(src="/self/Index.Ajax.js") 
-    block scripts
+    block scripts  
+    

@@ -33,8 +33,10 @@ function addnote(req, res) {
             }
         });
         //Return the url to generate QR
-        var qrpath = req.url + "?fetchID=" + newtext.get("_id");
-        res.write(qrpath);
+        var keyraw = newtext.get("_id");
+        var key = String(keyraw);
+        var trimkey = key.substr(6, 2) + key.substr(12, 2) + key.substr(22, 2);
+        res.write(trimkey);
         res.end();
         console.log(newtext.get("_id"));
         console.log("undefined is true");
