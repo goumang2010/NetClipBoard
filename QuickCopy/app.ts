@@ -3,14 +3,13 @@ import routes = require('./routes/index');
 import http = require('http');
 import path = require('path');
 import mongoose = require('mongoose');
-
-
+var dbUrl = 'mongodb://localhost/netnote'
+mongoose.connect(dbUrl)
 
 
 var app = express();
 
-var dbUrl = 'mongodb://localhost/netnote'
-mongoose.connect(dbUrl);
+
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -30,8 +29,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // development only
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
-
-    mongoose.set('debug', true);
+    //db.on('error', function (error) {
+    //    console.log(error);
+    //}); 
+    //mongoose.set('debug', true);
 }
 
 app.get('/', routes.index);
