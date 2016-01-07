@@ -74,6 +74,7 @@
     <Content Include="public\jquery\jquery-tests.ts.tscparams" />
     <Content Include="views\contact.jade" />
     <Content Include="views\about.jade" />
+    <Content Include="views\fetch.jade" />
     <Content Include="views\index.jade" />
     <Content Include="views\layout.jade" />
   </ItemGroup>

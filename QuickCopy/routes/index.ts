@@ -13,8 +13,15 @@ export function index(req: express.Request, res: express.Response) {
 };
 
 export function about(req: express.Request, res: express.Response) {
-    res.render('about', { title: 'About', year: new Date().getFullYear(), message: 'Your application description page' });
+
+       //  console.log(req.headers);
+        res.render('about', { title: 'About', year: new Date().getFullYear(), message: 'Your application description page' });
+       
 };
+
+
+    
+
 
 export function contact(req: express.Request, res: express.Response) {
     res.render('contact', { title: 'Contact', year: new Date().getFullYear(), message: 'Your contact page' });
@@ -25,18 +32,22 @@ function getClientIp(req) {
         req.connection.remoteAddress ||
         req.socket.remoteAddress ||
         req.connection.socket.remoteAddress;
+     
+};
+export function fetch(req: express.Request, res: express.Response) {
+    res.write("mock");
+    res.end();
 };
 export function addnote(req: express.Request, res: express.Response) {
     var note = req.body.noteText;
-    if (note !== 'undefined') {
+    if (note !== '') {
        // console.log(_dict);
         var newtext = new Note({ noteText: note, userIP: getClientIp(req)});
         newtext.save(function (err, note) {
             if (err) {
                 console.log(err);
+                console.log(note);
             }
-
-
         });
         //Return the url to generate QR
         var keyraw = newtext.get("_id");
@@ -44,16 +55,17 @@ export function addnote(req: express.Request, res: express.Response) {
         var trimkey = key.substr(6, 2) + key.substr(12, 2) + key.substr(22, 2);
         res.write(trimkey);
         res.end();
-        console.log(newtext.get("_id"));
-        console.log("undefined is true");
+        console.log(newtext.errors);
+        console.log("undefined is false");
         
       
     }
     else {
        
-        
-        console.log("undefined is false");
+        res.end();
+        console.log("undefined is true");
        // res.send("<Script>Alert('请输入内容')</Script>");
     }
+    
 };
 
