@@ -21,9 +21,10 @@ block content
         .btn-toolbar
         p=" 请输入要寄存的内容:"
             .btn-group
-            button.btn.btn-default 字母小写
-            button.btn.btn-default 字母大写
-            button.btn.btn-default 复制文本
+            button.btn.btn-default(onclick="toLower()") 字母小写
+            button.btn.btn-default(onclick="toUpper()") 字母大写
+            button.btn.btn-default(onclick="copyToBoard()") 复制文本
+            button.btn.btn-default(onclick="downTxt()") 下载txt
         form.formgroup(method="POST",action="/addnote",data-ajax-success="ShowQR",data-ajax-method="Post",data-ajax="true")
           .form-group
             textarea#noteText.form-control(name="noteText" rows="3" style="max-width:100%;height:200px;") #{noteText}
