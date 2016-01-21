@@ -90,9 +90,9 @@
     <Folder Include="Scripts\" />
     <Folder Include="public\self\" />
     <Folder Include="Scripts\typings\" />
-    <Folder Include="Scripts\typings\express\" />
     <Folder Include="public\jquery.qrcode\" />
     <Folder Include="public\jquery\" />
+    <Folder Include="Scripts\typings\express\" />
     <Folder Include="Scripts\typings\mongoose\" />
     <Folder Include="Scripts\typings\underscore\" />
     <Folder Include="Scripts\typings\node\" />
