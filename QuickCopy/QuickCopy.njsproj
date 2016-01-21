@@ -38,11 +38,11 @@
     <TypeScriptCompile Include="routes\index.ts" />
     <TypeScriptCompile Include="Schemas\note.ts" />
     <TypeScriptCompile Include="public\self\Index.Ajax.ts" />
+    <TypeScriptCompile Include="Scripts\typings\express\express.d.ts" />
     <TypeScriptCompile Include="public\jquery.qrcode\jquery.qrcode-tests.ts" />
     <TypeScriptCompile Include="public\jquery.qrcode\jquery.qrcode.d.ts" />
     <TypeScriptCompile Include="public\jquery\jquery-tests.ts" />
     <TypeScriptCompile Include="public\jquery\jquery.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\express\express.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\mongoose\mongoose.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\stylus\stylus.d.ts" />
