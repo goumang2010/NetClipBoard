@@ -3,7 +3,7 @@
 
 var NoteSchema = new mongoose.Schema({
     userIP: String,
-    //fetchKey: String,
+    fetchKey: String,
     noteText:String,
     meta: {
         createAt: {

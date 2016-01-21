@@ -39,7 +39,8 @@ app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 app.post('/addnote', routes.addnote);
-//app.get('/fetch', routes.fetch);
+app.get('/fetch', routes.fetch);
+app.get('/ajaxfetch', routes.ajaxfetch);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
