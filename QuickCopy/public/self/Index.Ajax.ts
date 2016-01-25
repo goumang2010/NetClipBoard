@@ -1,4 +1,20 @@
 ﻿
+function addLoadEvent(func) {
+    var oldonload = window.onload;
+    if (typeof window.onload != 'function') {
+        window.onload = func;
+    } else {
+        window.onload = function () {
+            oldonload(null);
+            func();
+        }
+    }
+
+}
+
+addLoadEvent(function () {
+    ShowQR(location.href);
+});
 
 function ShowQR(data) {
     var fetchurl: string = location.href;
