@@ -13,10 +13,10 @@ function addLoadEvent(func) {
 }
 
 addLoadEvent(function () {
-    ShowQR(location.href);
+    ShowQR(location.href,false);
 });
 
-function ShowQR(data) {
+function ShowQR(data, toa: boolean = true) {
     var fetchurl: string = location.href;
     var display = (<string>data)
     if (data != fetchurl) {
@@ -34,9 +34,32 @@ function ShowQR(data) {
         label:"QR",
         text: fetchurl
     }); 
-
-  // alert(data);
+    if (toa) {
+        toaWin("请查看二维码及链接")
+    }
 }
+function toaWin(content: string) {
+    toastr.options = {
+        closeButton: false,
+        debug: false,
+        newestOnTop: false,
+        progressBar: false,
+        positionClass: "toast-bottom-center",
+        preventDuplicates: false,
+        onclick: null,
+        showDuration: 300,
+        hideDuration: 1000,
+        timeOut: 5000,
+        extendedTimeOut: 1000,
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+    }
+    toastr["success"](content)
+
+}
+
 function fetchText(data) {
     if (data != "") {
         jQuery('#noteText').text(data);

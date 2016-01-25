@@ -11,9 +11,10 @@ function addLoadEvent(func) {
     }
 }
 addLoadEvent(function () {
-    ShowQR(location.href);
+    ShowQR(location.href, false);
 });
-function ShowQR(data) {
+function ShowQR(data, toa) {
+    if (toa === void 0) { toa = true; }
     var fetchurl = location.href;
     var display = data;
     if (data != fetchurl) {
@@ -31,7 +32,29 @@ function ShowQR(data) {
         label: "QR",
         text: fetchurl
     });
-    // alert(data);
+    if (toa) {
+        toaWin("请查看二维码及链接");
+    }
+}
+function toaWin(content) {
+    toastr.options = {
+        closeButton: false,
+        debug: false,
+        newestOnTop: false,
+        progressBar: false,
+        positionClass: "toast-bottom-center",
+        preventDuplicates: false,
+        onclick: null,
+        showDuration: 300,
+        hideDuration: 1000,
+        timeOut: 5000,
+        extendedTimeOut: 1000,
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+    };
+    toastr["success"](content);
 }
 function fetchText(data) {
     if (data != "") {
@@ -56,15 +79,5 @@ function copyToBoard() {
     textbox.select();
     var txt = textbox.text();
     document.execCommand("copy");
-    //屏蔽类型检查
-    //var windowfake = <any>window;
-    //if (windowfake.clipboardData) {
-    //    windowfake.clipboardData.clearData();
-    //    windowfake.clipboardData.setData("Text", txt);
-    //    alert("已经成功复制到剪帖板上");
-    //}
-    //else {
-    //    alert("暂时无法复制到剪帖板上，已显示在上方，请自行复制，并在文件夹中打开！");
-    //}
 }
 //# sourceMappingURL=Index.Ajax.js.map
