@@ -69,6 +69,7 @@
     <Content Include="public\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="public\stylesheets\bootstrap.css" />
     <Content Include="public\stylesheets\bootstrap.min.css" />
+    <Content Include="public\stylesheets\style.css" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="public\tsd.json" />
     <Content Include="README.md" />
