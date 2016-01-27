@@ -30,6 +30,8 @@ block content
           .form-group
             textarea#noteText.form-control(name="noteText" rows="3" style="max-width:100%;height:200px;") #{noteText}
             button.btn.btn-primary="提交"
+block scripthead
+    script(src="/self/index.js") 
 block scripts  
     script(src='//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js')
     script(src="//cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js") 
@@ -37,4 +39,4 @@ block scripts
     script(src='//apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js')
     script(src='//apps.bdimg.com/libs/respond.js/1.4.2/respond.js')
     script(src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js')
-    script(src="/self/Index.Ajax.js") 
+

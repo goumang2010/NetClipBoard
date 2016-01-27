@@ -80,4 +80,4 @@ function copyToBoard() {
     var txt = textbox.text();
     document.execCommand("copy");
 }
-//# sourceMappingURL=Index.Ajax.js.map
+//# sourceMappingURL=index.js.map
