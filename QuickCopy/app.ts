@@ -44,7 +44,7 @@ app.get('/contact', routes.contact);
 app.get('/websocket', socketctrl.websocket);
 app.post('/addnote', routes.addnote);
 app.get('/fetch', routes.fetch);
-app.get('/ajaxfetch', routes.ajaxfetch);
+app.post('/ajaxfetch', routes.ajaxfetch);
 
 var server = http.createServer(app);
 

@@ -1,4 +1,4 @@
-var punycode = require('punycode');
+//import punycode = require('punycode');
 //获取用户IP
 function getClientIp(req) {
     return req.headers['x-forwarded-for'] ||
@@ -24,7 +24,7 @@ exports.parseCookie = parseCookie;
 ;
 function serialize(name, val, opt) {
     if (opt === void 0) { opt = null; }
-    var pairs = [name + '=' + punycode.encode(val)];
+    var pairs = [name + '=' + val];
     opt = opt || {};
     if (opt.maxAge)
         pairs.push('Max-Age=' + opt.maxAge);

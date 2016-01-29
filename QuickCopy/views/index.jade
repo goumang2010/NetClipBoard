@@ -10,10 +10,8 @@ block content
             h2 寄存你的链接及文字以便快捷中转
             br
             p="下方输入密码以取出内容"
-            form.formgroup(method="GET",action="/ajaxfetch",data-ajax-success="fetchText",data-ajax-error="errHandle",data-ajax-method="Get",data-ajax="true")
-              .form-group
-                 input.form-control(name="key")
-                 button.btn.btn-primary="查询"
+            input#key.form-control
+            button.btn.btn-primary(type="button",onclick="ajaxFetch()")="查询"
         .col-md-4.col-md-offset-2
             p#anchor="请在左侧输入以下密码或扫描生成的二维码提取您寄存的数据:"
             div#handCode

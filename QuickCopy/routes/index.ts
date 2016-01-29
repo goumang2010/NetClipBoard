@@ -30,7 +30,7 @@ export function contact(req: express.Request, res: express.Response) {
 
 export function ajaxfetch(req: express.Request, res: express.Response) {
     //console.log("start");
-    var key = req.query.key;
+    var key = req.body.key;
     var keystr: string = key;
     if (keystr.length == 6) {
         // var array = [keystr.substr(0, 2), keystr.substr(2, 2), keystr.substr(4, 2)];
@@ -78,20 +78,47 @@ export function fetch(req: express.Request, res: express.Response) {
 export function addnote(req: express.Request, res: express.Response) {
     var note = req.body.noteText;
     if (note !== '') {
-       // console.log(_dict);
-        var newtext = new Note({ noteText: note, userIP: method.getClientIp(req)});
-        var keyraw = newtext.get("_id");
-        var key: string = String(keyraw);
-        var trimkey = key.substr(6, 2) + key.substr(12, 2) + key.substr(22, 2);
-        newtext.set("fetchKey", trimkey)
-        newtext.save(function (err, note) {
-            if (err) {
-                console.log(err);
-                console.log(note);
-            }
-        });
-        res.write(trimkey);
-        res.end();   
+        req.cookies = method.parseCookie(req.headers["cookie"]);
+        if ((req.body.keepkey!="true")||(!req.cookies.lastKey) ) {
+            var newtext = new Note({ noteText: note, userIP: method.getClientIp(req) });
+            var keyraw = newtext.get("_id");
+            var key: string = String(keyraw);
+            var trimkey = key.substr(6, 2) + key.substr(12, 2) + key.substr(22, 2);
+            newtext.set("fetchKey", trimkey)
+            newtext.save(function (err, note) {
+                if (err) {
+                    console.log(err);
+                    console.log(note);
+                }
+            });
+            res.setHeader('Set-Cookie', method.serialize('lastKey', trimkey));
+            res.write(trimkey);
+            res.end();
+        }
+        else {
+            var lastKey = req.cookies.lastKey;
+            Note.findOne({ "fetchKey": lastKey  }, function (err, bsonres) {
+                if (err || bsonres==null) {
+                    console.log(err);
+                    res.end();
+                }
+                else {
+                    bsonres.set("noteText", note)
+                    bsonres.save(function (err, note) {
+                        if (err) {
+                            console.log(err);
+                            console.log(note);
+                        }
+                    });
+                    res.write(lastKey);
+                    res.end();
+                }
+
+            });
+
+        }
+
+
     }
     else {
        

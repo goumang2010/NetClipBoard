@@ -22,7 +22,7 @@ function submitAjax() {
         url: 'addnote',// 跳转到 action  
         data: {
             noteText: note.text(),
-            ifkeychanged: $('#keepkey').attr("checked"),
+            keepkey: $('#keepkey').is(":checked"),
         },
         type: 'post',
         cache: false,
@@ -35,9 +35,37 @@ function submitAjax() {
         }
     });
 }
+function ajaxFetch() {
+    $.ajax({
+        url: 'ajaxfetch',
+        data: {
+            key: $('#key').val(),
+        },
+        type: 'post',
+        cache: false,
+        success: function (data) {
+            fetchText(data);
+        },
+        error: function () {
+            alert("通信异常！");
+        }
+    });
+
+}
+
 function showQR(data, toa: boolean = true) {
     var fetchurl: string = location.href;
+    //去除参数及锚点
+    var urlarray = fetchurl.split('/');
+    var ltstr = urlarray.pop();
+    if (ltstr!="") {
+        fetchurl=fetchurl.replace(ltstr, "");
+    }
     var display = (<string>data)
+    if (display == "") {
+        alert("出现错误，未能返回数据，请取消保持密码或清除cookie重试")
+        return;
+    }
     if (data != fetchurl) {
         fetchurl = fetchurl+"fetch?key="+data
     }
@@ -91,16 +119,15 @@ function fetchText(data) {
 //The toolbar 4button
 function toLower() {
     var orgstr: string = $('#noteText').text();
-    jQuery('#noteText').text(orgstr.toLowerCase());
+    note.text(orgstr.toLowerCase());
 }
 function toUpper() {
     var orgstr: string = $('#noteText').text();
-    jQuery('#noteText').text(orgstr.toUpperCase());
+    note.text(orgstr.toUpperCase());
 }
 function copyToBoard() {
-    var textbox = $('#noteText');
-    textbox.focus();
-    textbox.select();
-    var txt: string = textbox.text();
+    note.focus();
+    note.select();
+    var txt: string = note.text();
     document.execCommand("copy");
 }
