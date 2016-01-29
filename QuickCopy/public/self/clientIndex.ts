@@ -1,48 +1,65 @@
-function addLoadEvent(func) {
+﻿    var note = $('#noteText');
+    function addLoadEvent(func) {
     var oldonload = window.onload;
     if (typeof window.onload != 'function') {
         window.onload = func;
-    }
-    else {
+    } else {
         window.onload = function () {
             oldonload(null);
             func();
-        };
+        }
     }
 }
 addLoadEvent(function () {
-    ShowQR(location.href, false);
+    showQR(location.href,false);
 });
-function retosocket() {
+function retoSocket() {
     window.open("/websocket");
     return false;
 }
-function ShowQR(data, toa) {
-    if (toa === void 0) { toa = true; }
-    var fetchurl = location.href;
-    var display = data;
+function submitAjax() {
+    $.ajax({
+        url: 'addnote',// 跳转到 action  
+        data: {
+            noteText: note.text(),
+            ifkeychanged: $('#keepkey').attr("checked"),
+        },
+        type: 'post',
+        cache: false,
+       // dataType: 'json',
+        success: function (data) {
+            showQR(data);
+        },
+        error: function () {   
+            alert("通信异常！");
+        }
+    });
+}
+function showQR(data, toa: boolean = true) {
+    var fetchurl: string = location.href;
+    var display = (<string>data)
     if (data != fetchurl) {
-        fetchurl = fetchurl + "fetch?key=" + data;
+        fetchurl = fetchurl+"fetch?key="+data
     }
     //If data is an address,then get the key only.
-    var dary = display.split("=");
+    var dary = display.split("=")
     if (dary.length > 1) {
         display = dary[dary.length - 1];
     }
     $('#handCode').empty();
-    $('#handCode').append("<a href='" + fetchurl + "'>" + display + "</a>");
+    $('#handCode').append("<a href='"+fetchurl+"'>"+ display+"</a>");
     $('#qrcodeCanvas').empty();
     $('#qrcodeCanvas').qrcode({
-        label: "QR",
+        label:"QR",
         text: fetchurl
-    });
+    }); 
     if (toa) {
-        toaWin("请查看二维码及链接");
+        toaWin("请查看二维码及链接")
     }
     //返回至锚点，便于移动端浏览
-    location.hash = "#anchor";
+    location.hash = "#anchor";  
 }
-function toaWin(content) {
+function toaWin(content: string) {
     toastr.options = {
         closeButton: false,
         debug: false,
@@ -59,31 +76,31 @@ function toaWin(content) {
         hideEasing: "linear",
         showMethod: "fadeIn",
         hideMethod: "fadeOut"
-    };
-    toastr["success"](content);
+    }
+    toastr["success"](content)
 }
 function fetchText(data) {
     if (data != "") {
-        $('#noteText').text(data);
+        note.text(data);
+    // alert(data);
     }
-    function errHandle(err) {
+    function errHandle(err: Error) {
         alert(err);
     }
 }
 //The toolbar 4button
 function toLower() {
-    var orgstr = $('#noteText').text();
+    var orgstr: string = $('#noteText').text();
     jQuery('#noteText').text(orgstr.toLowerCase());
 }
 function toUpper() {
-    var orgstr = $('#noteText').text();
+    var orgstr: string = $('#noteText').text();
     jQuery('#noteText').text(orgstr.toUpperCase());
 }
 function copyToBoard() {
     var textbox = $('#noteText');
     textbox.focus();
     textbox.select();
-    var txt = textbox.text();
+    var txt: string = textbox.text();
     document.execCommand("copy");
 }
-//# sourceMappingURL=index.js.map

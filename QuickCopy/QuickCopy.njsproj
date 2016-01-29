@@ -36,7 +36,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="Models\noteModel.ts" />
-    <TypeScriptCompile Include="public\self\index.ts" />
+    <TypeScriptCompile Include="public\self\clientIndex.ts" />
     <TypeScriptCompile Include="public\self\websocket.ts" />
     <TypeScriptCompile Include="public\typings\jquery.qrcode\jquery.qrcode.d.ts" />
     <TypeScriptCompile Include="public\typings\jquery\jquery.d.ts" />
@@ -74,6 +74,7 @@
     <Content Include="public\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="public\stylesheets\bootstrap.css" />
     <Content Include="public\stylesheets\bootstrap.min.css" />
+    <Content Include="public\stylesheets\index.css" />
     <Content Include="public\stylesheets\style.css" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="public\tsd.json" />

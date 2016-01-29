@@ -1,52 +1,67 @@
-﻿
+var note = $('#noteText');
 function addLoadEvent(func) {
     var oldonload = window.onload;
     if (typeof window.onload != 'function') {
         window.onload = func;
-    } else {
+    }
+    else {
         window.onload = function () {
             oldonload(null);
             func();
-        }
+        };
     }
-
 }
-
 addLoadEvent(function () {
-    ShowQR(location.href,false);
+    showQR(location.href, false);
 });
-
-function retosocket() {
+function retoSocket() {
     window.open("/websocket");
     return false;
 }
-
-
-function ShowQR(data, toa: boolean = true) {
-    var fetchurl: string = location.href;
-    var display = (<string>data)
+function submitAjax() {
+    $.ajax({
+        url: 'addnote',
+        data: {
+            noteText: note.text(),
+            ifkeychanged: $('#keepkey').attr("checked"),
+        },
+        type: 'post',
+        cache: false,
+        // dataType: 'json',
+        success: function (data) {
+            showQR(data);
+        },
+        error: function () {
+            alert("通信异常！");
+        }
+    });
+}
+function showQR(data, toa) {
+    if (toa === void 0) { toa = true; }
+    var fetchurl = location.href;
+    var display = data;
     if (data != fetchurl) {
-        fetchurl = fetchurl+"fetch?key="+data
+        fetchurl = fetchurl + "fetch?key=" + data;
     }
     //If data is an address,then get the key only.
-    var dary = display.split("=")
+    var dary = display.split("=");
     if (dary.length > 1) {
         display = dary[dary.length - 1];
     }
     $('#handCode').empty();
-    $('#handCode').append("<a href='"+fetchurl+"'>"+ display+"</a>");
+    $('#handCode').append("<a href='" + fetchurl + "'>" + display + "</a>");
     $('#qrcodeCanvas').empty();
     $('#qrcodeCanvas').qrcode({
-        label:"QR",
+        label: "QR",
         text: fetchurl
-    }); 
+    });
     if (toa) {
-        toaWin("请查看二维码及链接")
+        toaWin("请查看二维码及链接");
     }
     //返回至锚点，便于移动端浏览
-    location.hash = "#anchor";  
+    location.hash = "#anchor";
 }
-function toaWin(content: string) {
+function toaWin(content) {
     toastr.options = {
         closeButton: false,
         debug: false,
@@ -63,40 +78,31 @@ function toaWin(content: string) {
         hideEasing: "linear",
         showMethod: "fadeIn",
         hideMethod: "fadeOut"
-    }
-    toastr["success"](content)
-
+    };
+    toastr["success"](content);
 }
-
 function fetchText(data) {
     if (data != "") {
-        $('#noteText').text(data);
-    // alert(data);
+        note.text(data);
     }
-
-    function errHandle(err: Error) {
+    function errHandle(err) {
         alert(err);
-
     }
 }
-
 //The toolbar 4button
 function toLower() {
-    var orgstr: string = $('#noteText').text();
+    var orgstr = $('#noteText').text();
     jQuery('#noteText').text(orgstr.toLowerCase());
-
 }
 function toUpper() {
-    var orgstr: string = $('#noteText').text();
+    var orgstr = $('#noteText').text();
     jQuery('#noteText').text(orgstr.toUpperCase());
-
 }
 function copyToBoard() {
     var textbox = $('#noteText');
     textbox.focus();
     textbox.select();
-    var txt: string = textbox.text();
+    var txt = textbox.text();
     document.execCommand("copy");
 }
-
-
+//# sourceMappingURL=clientIndex.js.map

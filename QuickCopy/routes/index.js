@@ -80,8 +80,6 @@ function addnote(req, res) {
         });
         res.write(trimkey);
         res.end();
-        console.log(newtext.errors);
-        console.log("undefined is false");
     }
     else {
         res.end();

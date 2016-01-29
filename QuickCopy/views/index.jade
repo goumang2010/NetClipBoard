@@ -21,25 +21,24 @@ block content
       .row
         .btn-toolbar
         p=" 请输入要寄存的内容:"
-            input.checkbox(type="checkbox")
             .btn-group
             button.btn.btn-default(onclick="toLower()") 字母小写
             button.btn.btn-default(onclick="toUpper()") 字母大写
             button.btn.btn-default(onclick="copyToBoard()") 复制文本
             button.btn.btn-default(onclick="downTxt()") 下载txt
-        form.formgroup(method="POST",action="/addnote",data-ajax-success="ShowQR",data-ajax-method="Post",data-ajax="true")
-          .form-group
-            textarea#noteText.form-control(name="noteText" rows="3" style="max-width:100%;height:200px;") #{noteText}
-            button.btn.btn-primary="提交"
+            input#keepkey(type="checkbox",checked="checked")
+            label(for="keepkey") 保持密码
+            textarea#noteText.form-control(name="noteText" rows="3") #{noteText}
+            button.btn.btn-primary(type="button",onclick="submitAjax()")="提交"
             &nbsp;
-            button.btn.btn-primary(type="button",onclick="retosocket()")="对话" 
+            button.btn.btn-primary(type="button",onclick="retoSocket()")="对话" 
 block scripthead
-    script(src="/self/index.js") 
+    link(rel='stylesheet', type='text/css', href='/stylesheets/index.css')
 block scripts  
     script(src='//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js')
     script(src="//cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js") 
-    script(src='//cdn.bootcss.com/jquery-ajax-unobtrusive/3.2.3/jquery.unobtrusive-ajax.min.js')
     script(src='//apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js')
     script(src='//apps.bdimg.com/libs/respond.js/1.4.2/respond.js')
     script(src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js')
+    script(src="/self/clientIndex.js")
 

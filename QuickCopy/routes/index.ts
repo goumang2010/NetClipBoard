@@ -80,9 +80,7 @@ export function addnote(req: express.Request, res: express.Response) {
     if (note !== '') {
        // console.log(_dict);
         var newtext = new Note({ noteText: note, userIP: method.getClientIp(req)});
-
         var keyraw = newtext.get("_id");
-        
         var key: string = String(keyraw);
         var trimkey = key.substr(6, 2) + key.substr(12, 2) + key.substr(22, 2);
         newtext.set("fetchKey", trimkey)
@@ -93,11 +91,7 @@ export function addnote(req: express.Request, res: express.Response) {
             }
         });
         res.write(trimkey);
-        res.end();
-        console.log(newtext.errors);
-        console.log("undefined is false");
-        
-      
+        res.end();   
     }
     else {
        
