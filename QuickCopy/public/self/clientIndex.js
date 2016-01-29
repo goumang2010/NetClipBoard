@@ -1,4 +1,5 @@
 var note = $('#noteText');
+var keycode;
 function addLoadEvent(func) {
     var oldonload = window.onload;
     if (typeof window.onload != 'function') {
@@ -31,8 +32,8 @@ function submitAjax() {
         success: function (data) {
             showQR(data);
         },
-        error: function () {
-            alert("通信异常！");
+        error: function (err) {
+            errHandle(err);
         }
     });
 }
@@ -47,40 +48,46 @@ function ajaxFetch() {
         success: function (data) {
             fetchText(data);
         },
-        error: function () {
-            alert("通信异常！");
+        error: function (err) {
+            errHandle(err);
         }
     });
 }
 function showQR(data, toa) {
     if (toa === void 0) { toa = true; }
-    var fetchurl = location.href;
-    //去除参数及锚点
-    var urlarray = fetchurl.split('/');
-    var ltstr = urlarray.pop();
-    if (ltstr != "") {
-        fetchurl = fetchurl.replace(ltstr, "");
-    }
     var display = data;
     if (display == "") {
         alert("出现错误，未能返回数据，请取消保持密码或清除cookie重试");
         return;
     }
-    if (data != fetchurl) {
-        fetchurl = fetchurl + "fetch?key=" + data;
+    //对比密码是否改变，若未改变，则不再重复生成网址及二维码
+    if (keycode != data) {
+        var fetchurl = location.href;
+        //如果是6位密码，则补全
+        if (display.length == 6) {
+            //去除参数及锚点
+            var urlarray = fetchurl.split('/');
+            var ltstr = urlarray.pop();
+            if (ltstr != "") {
+                fetchurl = fetchurl.replace(ltstr, "");
+            }
+            fetchurl = fetchurl + "fetch?key=" + data;
+        }
+        //If data is an address,then get the key only.
+        var dary = display.split("=");
+        if (dary.length > 1) {
+            display = dary[dary.length - 1];
+        }
+        $('#handCode').empty();
+        $('#handCode').append("<a href='" + fetchurl + "'>" + display + "</a>");
+        $('#qrcodeCanvas').empty();
+        $('#qrcodeCanvas').qrcode({
+            label: "QR",
+            text: fetchurl
+        });
+        //保存密码到全局变量
+        keycode = data;
     }
-    //If data is an address,then get the key only.
-    var dary = display.split("=");
-    if (dary.length > 1) {
-        display = dary[dary.length - 1];
-    }
-    $('#handCode').empty();
-    $('#handCode').append("<a href='" + fetchurl + "'>" + display + "</a>");
-    $('#qrcodeCanvas').empty();
-    $('#qrcodeCanvas').qrcode({
-        label: "QR",
-        text: fetchurl
-    });
     if (toa) {
         toaWin("请查看二维码及链接");
     }
@@ -110,18 +117,21 @@ function toaWin(content) {
 function fetchText(data) {
     if (data != "") {
         note.text(data);
+        toaWin("请查看取回的内容");
+        //返回至锚点，便于移动端浏览
+        location.hash = "#noteText";
     }
-    function errHandle(err) {
-        alert(err);
-    }
+}
+function errHandle(err) {
+    alert("似乎是通信异常！请查看错误信息：" + err);
 }
 //The toolbar 4button
 function toLower() {
-    var orgstr = $('#noteText').text();
+    var orgstr = note.text();
     note.text(orgstr.toLowerCase());
 }
 function toUpper() {
-    var orgstr = $('#noteText').text();
+    var orgstr = note.text();
     note.text(orgstr.toUpperCase());
 }
 function copyToBoard() {
