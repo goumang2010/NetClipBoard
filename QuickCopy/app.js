@@ -1,5 +1,7 @@
 var express = require('express');
 var routes = require('./routes/index');
+var socketctrl = require('./routes/socketctrl');
+var socketio = require('socket.io');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
@@ -26,10 +28,15 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
+//WenbSocket页面
+app.get('/websocket', socketctrl.websocket);
 app.post('/addnote', routes.addnote);
 app.get('/fetch', routes.fetch);
 app.get('/ajaxfetch', routes.ajaxfetch);
-http.createServer(app).listen(app.get('port'), function () {
+var server = http.createServer(app);
+server.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
+//WebSocket处理
+socketio.listen(server).on('connection', socketctrl.socketlitener);
 //# sourceMappingURL=app.js.map

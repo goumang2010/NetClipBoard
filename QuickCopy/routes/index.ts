@@ -4,12 +4,14 @@
 import express = require('express');
 import mongoose = require('mongoose');
 import noteraw = require('../Models/noteModel');
+import method = require('./sharedmethod');
 var Note = <mongoose.Model<mongoose.Document>>noteraw;
 //import noteschema = require('../Schemas/note');
 //var NoteSchema = <mongoose.Schema> noteschema 
 import _ = require('underscore');
 export function index(req: express.Request, res: express.Response) {
     res.render('index', { title: 'NetClipBoard', year: new Date().getFullYear() });
+
 };
 
 export function about(req: express.Request, res: express.Response) {
@@ -25,13 +27,7 @@ export function contact(req: express.Request, res: express.Response) {
     res.render('contact', { title: 'Contact', year: new Date().getFullYear(), message: 'Your contact page' });
 };
 
-function getClientIp(req) {
-    return req.headers['x-forwarded-for'] ||
-        req.connection.remoteAddress ||
-        req.socket.remoteAddress ||
-        req.connection.socket.remoteAddress;
-     
-};
+
 export function ajaxfetch(req: express.Request, res: express.Response) {
     //console.log("start");
     var key = req.query.key;
@@ -83,7 +79,7 @@ export function addnote(req: express.Request, res: express.Response) {
     var note = req.body.noteText;
     if (note !== '') {
        // console.log(_dict);
-        var newtext = new Note({ noteText: note, userIP: getClientIp(req)});
+        var newtext = new Note({ noteText: note, userIP: method.getClientIp(req)});
 
         var keyraw = newtext.get("_id");
         

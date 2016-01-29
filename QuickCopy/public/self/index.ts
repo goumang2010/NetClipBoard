@@ -16,6 +16,12 @@ addLoadEvent(function () {
     ShowQR(location.href,false);
 });
 
+function retosocket() {
+    window.open("/websocket");
+    return false;
+}
+
+
 function ShowQR(data, toa: boolean = true) {
     var fetchurl: string = location.href;
     var display = (<string>data)
@@ -27,16 +33,18 @@ function ShowQR(data, toa: boolean = true) {
     if (dary.length > 1) {
         display = dary[dary.length - 1];
     }
-    jQuery('#handCode').empty();
-    jQuery('#handCode').append("<a href='"+fetchurl+"'>"+ display+"</a>");
-    jQuery('#qrcodeCanvas').empty();
-    jQuery('#qrcodeCanvas').qrcode({
+    $('#handCode').empty();
+    $('#handCode').append("<a href='"+fetchurl+"'>"+ display+"</a>");
+    $('#qrcodeCanvas').empty();
+    $('#qrcodeCanvas').qrcode({
         label:"QR",
         text: fetchurl
     }); 
     if (toa) {
         toaWin("请查看二维码及链接")
     }
+    //返回至锚点，便于移动端浏览
+    location.hash = "#anchor";  
 }
 function toaWin(content: string) {
     toastr.options = {
@@ -62,7 +70,7 @@ function toaWin(content: string) {
 
 function fetchText(data) {
     if (data != "") {
-        jQuery('#noteText').text(data);
+        $('#noteText').text(data);
     // alert(data);
     }
 
@@ -74,17 +82,17 @@ function fetchText(data) {
 
 //The toolbar 4button
 function toLower() {
-    var orgstr: string = jQuery('#noteText').text();
+    var orgstr: string = $('#noteText').text();
     jQuery('#noteText').text(orgstr.toLowerCase());
 
 }
 function toUpper() {
-    var orgstr: string = jQuery('#noteText').text();
+    var orgstr: string = $('#noteText').text();
     jQuery('#noteText').text(orgstr.toUpperCase());
 
 }
 function copyToBoard() {
-    var textbox = jQuery('#noteText');
+    var textbox = $('#noteText');
     textbox.focus();
     textbox.select();
     var txt: string = textbox.text();

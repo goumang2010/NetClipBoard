@@ -12,6 +12,7 @@
     "jade": "*",
     "mongoose": "^4.3.4",
     "node-gyp": "^3.2.1",
+    "socket.io": "^1.4.5",
     "stylus": "*"
   }
 }

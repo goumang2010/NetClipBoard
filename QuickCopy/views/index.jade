@@ -15,12 +15,13 @@ block content
                  input.form-control(name="key")
                  button.btn.btn-primary="查询"
         .col-md-4.col-md-offset-2
-            p="请在左侧输入以下密码或扫描生成的二维码提取您寄存的数据:"
+            p#anchor="请在左侧输入以下密码或扫描生成的二维码提取您寄存的数据:"
             div#handCode
             div#qrcodeCanvas  
       .row
         .btn-toolbar
         p=" 请输入要寄存的内容:"
+            input.checkbox(type="checkbox")
             .btn-group
             button.btn.btn-default(onclick="toLower()") 字母小写
             button.btn.btn-default(onclick="toUpper()") 字母大写
@@ -30,6 +31,8 @@ block content
           .form-group
             textarea#noteText.form-control(name="noteText" rows="3" style="max-width:100%;height:200px;") #{noteText}
             button.btn.btn-primary="提交"
+            &nbsp;
+            button.btn.btn-primary(type="button",onclick="retosocket()")="对话" 
 block scripthead
     script(src="/self/index.js") 
 block scripts  
