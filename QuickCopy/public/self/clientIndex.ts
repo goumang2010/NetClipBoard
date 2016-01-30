@@ -19,11 +19,17 @@ function retoSocket() {
     return false;
 }
 function submitAjax() {
+    var notetext = note.val();
+    if (notetext == "") {
+        toaWin("你没有输入任何东西", "warning");
+        note.focus;
+        return;
+    }
     $.ajax({
         url: 'addnote',// 跳转到 action  
         data: {
             //需使用val才能在一些移动端取得输入的文本，不能使用text
-            noteText: note.val(),
+            noteText: notetext,
             keepkey: $('#keepkey').is(":checked"),
         },
         type: 'post',
@@ -38,10 +44,16 @@ function submitAjax() {
     });
 }
 function ajaxFetch() {
+   var keytext:string= $('#key').val()
+   if (keytext.length!=6) {
+       toaWin("请输入6位密码", "warning");
+       $('#key').focus();
+        return;
+    }
     $.ajax({
         url: 'ajaxfetch',
         data: {
-            key: $('#key').val(),
+            key: keytext,
         },
         type: 'post',
         cache: false,
@@ -98,7 +110,7 @@ function showQR(data, toa: boolean = true) {
     $(window).scrollTop(t);
 
 }
-function toaWin(content: string) {
+function toaWin(content: string,state:string="success") {
     toastr.options = {
         closeButton: false,
         debug: false,
@@ -116,14 +128,18 @@ function toaWin(content: string) {
         showMethod: "fadeIn",
         hideMethod: "fadeOut"
     }
-    toastr["success"](content)
+    toastr[state](content)
 }
 function fetchText(data) {
     if (data != "") {
         note.val(data);
-       toaWin("请查看取回的内容")
+        toaWin("请查看取回的内容")
         //返回至锚点，便于移动端浏览
-        location.hash = "#noteText";  
+        location.hash = "#noteText";
+    }
+    else {
+        toaWin("没有找到对应的内容，请核查后重试", "error");
+        $('#key').focus();
     }
 
 }

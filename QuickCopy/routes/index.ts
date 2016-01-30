@@ -37,7 +37,7 @@ export function ajaxfetch(req: express.Request, res: express.Response) {
         //var re = new RegExp(".{6}" + array[0] + ".{4}" + array[1] + ".{8}" + array[2]);
         // res.write("test");
         Note.findOne({ "fetchKey": keystr }, function (err, bsonres) {
-            if (err) {
+            if (err || bsonres == null) {
                 console.log(err);
                 res.end();
             }
@@ -60,7 +60,7 @@ export function fetch(req: express.Request, res: express.Response) {
     var keystr: string = key;
     if (keystr.length == 6) {
         Note.findOne({ "fetchKey": keystr }, function (err, bsonres) {
-            if (err) {
+            if (err || bsonres == null) {
                 console.log(err);
                 res.end();
             }

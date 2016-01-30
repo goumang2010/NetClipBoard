@@ -25,7 +25,7 @@ function ajaxfetch(req, res) {
         //var re = new RegExp(".{6}" + array[0] + ".{4}" + array[1] + ".{8}" + array[2]);
         // res.write("test");
         Note.findOne({ "fetchKey": keystr }, function (err, bsonres) {
-            if (err) {
+            if (err || bsonres == null) {
                 console.log(err);
                 res.end();
             }
@@ -47,7 +47,7 @@ function fetch(req, res) {
     var keystr = key;
     if (keystr.length == 6) {
         Note.findOne({ "fetchKey": keystr }, function (err, bsonres) {
-            if (err) {
+            if (err || bsonres == null) {
                 console.log(err);
                 res.end();
             }
