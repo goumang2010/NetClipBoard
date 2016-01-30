@@ -23,7 +23,8 @@ function submitAjax() {
     $.ajax({
         url: 'addnote',
         data: {
-            noteText: note.text(),
+            //需使用val才能在一些移动端取得输入的文本，不能使用text
+            noteText: note.val(),
             keepkey: $('#keepkey').is(":checked"),
         },
         type: 'post',
@@ -116,7 +117,7 @@ function toaWin(content) {
 }
 function fetchText(data) {
     if (data != "") {
-        note.text(data);
+        note.val(data);
         toaWin("请查看取回的内容");
         //返回至锚点，便于移动端浏览
         location.hash = "#noteText";
@@ -137,7 +138,6 @@ function toUpper() {
 function copyToBoard() {
     note.focus();
     note.select();
-    var txt = note.text();
     document.execCommand("copy");
 }
 //# sourceMappingURL=clientIndex.js.map
