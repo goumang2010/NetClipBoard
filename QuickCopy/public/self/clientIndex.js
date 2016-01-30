@@ -93,7 +93,9 @@ function showQR(data, toa) {
         toaWin("请查看二维码及链接");
     }
     //返回至锚点，便于移动端浏览
-    location.hash = "#anchor";
+    //location.hash = "#"; 
+    var t = $("#anchor").offset().top;
+    $(window).scrollTop(t);
 }
 function toaWin(content) {
     toastr.options = {

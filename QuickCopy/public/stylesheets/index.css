@@ -6,6 +6,12 @@ label{
     font-size:14px;
     font-weight:normal;
 }
+h1{
+    margin-top:10px;
+}
+br{
+    line-height:1.8
+}
 #keepkey{
     margin:2px 2px 0 10px;
 }
