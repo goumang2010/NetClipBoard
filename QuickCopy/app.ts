@@ -5,6 +5,7 @@ import socketio = require('socket.io');
 import http = require('http');
 import path = require('path');
 import mongoose = require('mongoose');
+const MongoStore = require('connect-mongo')(express);
 var dbUrl = 'mongodb://localhost/netnote'
 mongoose.connect(dbUrl)
 
@@ -22,12 +23,20 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(app.router);
+app.use(express.cookieParser());
 
 import stylus = require('stylus');
 app.use(stylus.middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.session({
+    secret: 'netnote',
+    store: new MongoStore({
+        url: dbUrl,
+        collection: "sessions"
+    })
+}));
+app.use(app.router);
 // development only
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());

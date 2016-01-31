@@ -47,6 +47,7 @@
     <TypeScriptCompile Include="routes\sharedmethod.ts" />
     <TypeScriptCompile Include="routes\socketctrl.ts" />
     <TypeScriptCompile Include="Schemas\note.ts" />
+    <TypeScriptCompile Include="Schemas\user.ts" />
     <TypeScriptCompile Include="Scripts\typings\express\express.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\mongoose\mongoose.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />

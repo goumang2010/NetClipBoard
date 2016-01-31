@@ -8,6 +8,8 @@
     "email": ""
   },
   "dependencies": {
+    "bcrypt": "^0.8.5",
+    "connect-mongo": "^1.1.0",
     "express": "3.4.4",
     "jade": "*",
     "mongoose": "^4.3.4",
