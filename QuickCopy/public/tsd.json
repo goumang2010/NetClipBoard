@@ -16,6 +16,9 @@
     },
     "socket.io-client/socket.io-client.d.ts": {
       "commit": "86dbea8fc37d9473fee465da4f0a21bea4f8cbd9"
+    },
+    "js-cookie/js-cookie.d.ts": {
+      "commit": "717a5fdb079f8dd7c19f1b22f7f656dd990f0ccf"
     }
   }
 }

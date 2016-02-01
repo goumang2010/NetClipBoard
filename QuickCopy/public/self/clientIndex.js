@@ -1,5 +1,6 @@
-var note = $('#noteText');
+var $note = $('#noteText');
 var keycode;
+var sch = $(document).height() - $(window).height();
 function addLoadEvent(func) {
     var oldonload = window.onload;
     if (typeof window.onload != 'function') {
@@ -19,11 +20,15 @@ function retoSocket() {
     window.open("/websocket");
     return false;
 }
+//Ajax提交与取回
+/**
+ * Ajax提交
+ */
 function submitAjax() {
-    var notetext = note.val();
+    var notetext = $note.val();
     if (notetext == "") {
         toaWin("你没有输入任何东西", "warning");
-        note.focus;
+        $note.focus;
         return;
     }
     $.ajax({
@@ -104,7 +109,7 @@ function showQR(data, toa) {
     if (toa) {
         toaWin("请查看二维码及链接");
     }
-    //返回至锚点，便于移动端浏览
+    //返回至锚点，便于移动端浏览，location.hash在一些移动端会失效
     //location.hash = "#"; 
     var t = $("#anchor").offset().top;
     $(window).scrollTop(t);
@@ -132,7 +137,7 @@ function toaWin(content, state) {
 }
 function fetchText(data) {
     if (data != "") {
-        note.val(data);
+        $note.val(data);
         toaWin("请查看取回的内容");
         //返回至锚点，便于移动端浏览
         location.hash = "#noteText";
@@ -145,18 +150,28 @@ function fetchText(data) {
 function errHandle(err) {
     alert("似乎是通信异常！请查看错误信息：" + err);
 }
-//The toolbar 4button
+//监视滚动，适时隐藏导航栏
+$(window).scroll(function () {
+    var tval = $(document).scrollTop();
+    if (tval >= sch) {
+        $(".navbar").fadeOut();
+    }
+    else {
+        $(".navbar").show();
+    }
+});
+//三个按钮
 function toLower() {
-    var orgstr = note.text();
-    note.text(orgstr.toLowerCase());
+    var orgstr = $note.text();
+    $note.text(orgstr.toLowerCase());
 }
 function toUpper() {
-    var orgstr = note.text();
-    note.text(orgstr.toUpperCase());
+    var orgstr = $note.text();
+    $note.text(orgstr.toUpperCase());
 }
 function copyToBoard() {
-    note.focus();
-    note.select();
+    $note.focus();
+    $note.select();
     document.execCommand("copy");
 }
 //# sourceMappingURL=clientIndex.js.map

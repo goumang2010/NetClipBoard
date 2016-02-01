@@ -492,8 +492,9 @@ declare module SocketIO {
 		 * The unique ID for this Socket. Regenerated at every connection. This is
 		 * also the name of the room that the Socket automatically joins on connection
 		 */
-		id: string;
-		
+        id: string;
+        //def by myself
+        username: string;
 		/**
 		 * The http.IncomingMessage request sent with the connection. Useful 
 		 * for recovering headers etc

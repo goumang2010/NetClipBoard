@@ -77,7 +77,6 @@
     <Content Include="public\stylesheets\bootstrap.min.css" />
     <Content Include="public\stylesheets\index.css" />
     <Content Include="public\stylesheets\style.css" />
-    <Content Include="public\stylesheets\style.styl" />
     <Content Include="public\stylesheets\websocket.css" />
     <Content Include="public\tsd.json" />
     <Content Include="README.md" />

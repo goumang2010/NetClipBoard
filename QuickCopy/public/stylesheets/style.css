@@ -32,3 +32,12 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
   display: none;
 }
+.navbar{
+	opacity: 0.9;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color:#ccc;
+}
+.navbar-inverse.navbar-brand{
+color:#ccc;
+ }
