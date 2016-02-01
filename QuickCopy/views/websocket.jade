@@ -1,5 +1,7 @@
 ﻿extends layout
 block content
+ ul.pages
+  li.chat.page
     .container
       .row
         .col-md-2
@@ -8,6 +10,12 @@ block content
             p #{sysmsg}
             textarea#chatText.form-control(name="chatText" rows="3" style="max-width:100%;height:200px;")
             button.btn.btn-primary(onclick="sendMsg()")="发送" 
+   li.login.page
+     .form
+       h3.title "请输入一个你的代号"
+       input.usernameInput(type="text",maxlength="14")
+block scripthead
+    link(rel='stylesheet', type='text/css', href='/stylesheets/websocket.css')
 block scripts  
     script(src='//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js')
     script(src="/javascripts/socket.io.js") 

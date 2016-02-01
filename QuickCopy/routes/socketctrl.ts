@@ -5,9 +5,9 @@ export function websocket(req: express.Request, res: express.Response) {
     req.cookies = method.parseCookie(req.headers["cookie"]);
     if (req.cookies.lastKey !="undefined") {
         req.session.user = { user: req.cookies.lastKey };
-        req.session.save(function (err) {
-            if (err) console.log(err);
-        });
+        //req.session.save(function (err) {
+        //    if (err) console.log(err);
+        //});
     }
     if (!req.cookies.isVisit) {
         res.setHeader('Set-Cookie', method.serialize('isVisit', '1'));

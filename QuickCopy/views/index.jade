@@ -1,8 +1,6 @@
 ﻿extends layout
 block content
-  br
-  br
-  .jumbotron
+  .metro.jumbotron
     .container
       .row
         .col-md-6
@@ -16,20 +14,18 @@ block content
             p#anchor="请在左侧输入以下密码或扫描生成的二维码提取您寄存的数据:"
             div#handCode
             div#qrcodeCanvas  
-      .row
-        .btn-toolbar
+      .row.inputarea
         p=" 请输入要寄存的内容:"
-            .btn-group
+          .btn-group
             button.btn.btn-default(onclick="toLower()") 字母小写
             button.btn.btn-default(onclick="toUpper()") 字母大写
             button.btn.btn-default(onclick="copyToBoard()") 复制文本
-            button.btn.btn-default(onclick="downTxt()") 下载txt
             input#keepkey(type="checkbox",checked="checked")
             label(for="keepkey") 保持密码           
-            textarea#noteText.form-control(name="noteText" rows="3") #{noteText}
-            button.btn.btn-primary(type="button",onclick="submitAjax()")="提交"
-            &nbsp;
-            button.btn.btn-primary(type="button",onclick="retoSocket()")="对话" 
+          textarea#noteText.form-control(name="noteText" rows="3") #{noteText}
+          button.btn.btn-primary(type="button",onclick="submitAjax()")="提交"
+          &nbsp;
+          button.btn.btn-primary(type="button",onclick="retoSocket()")="对话" 
 block scripthead
     link(rel='stylesheet', type='text/css', href='/stylesheets/index.css')
 block scripts  

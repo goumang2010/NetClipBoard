@@ -3,10 +3,6 @@ function websocket(req, res) {
     req.cookies = method.parseCookie(req.headers["cookie"]);
     if (req.cookies.lastKey != "undefined") {
         req.session.user = { user: req.cookies.lastKey };
-        req.session.save(function (err) {
-            if (err)
-                console.log(err);
-        });
     }
     if (!req.cookies.isVisit) {
         res.setHeader('Set-Cookie', method.serialize('isVisit', '1'));
