@@ -14,6 +14,7 @@
     }
     addLoadEvent(function () {
         showQR(location.href, false);
+        $note.focus();
     });
     function retoSocket() {
         window.open("/websocket");
@@ -122,7 +123,7 @@
             debug: false,
             newestOnTop: false,
             progressBar: false,
-            positionClass: "toast-bottom-center",
+            positionClass: "toast-top-center",
             preventDuplicates: false,
             onclick: null,
             showDuration: 300,

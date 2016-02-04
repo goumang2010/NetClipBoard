@@ -15,6 +15,7 @@ function addLoadEvent(func) {
 }
 addLoadEvent(function () {
     showQR(location.href, false);
+    $note.focus();
 });
 function retoSocket() {
     window.open("/websocket");
@@ -121,7 +122,7 @@ function toaWin(content, state) {
         debug: false,
         newestOnTop: false,
         progressBar: false,
-        positionClass: "toast-bottom-center",
+        positionClass: "toast-top-center",
         preventDuplicates: false,
         onclick: null,
         showDuration: 300,
