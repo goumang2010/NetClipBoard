@@ -65,30 +65,33 @@ exports.fetch = fetch;
 ;
 function addnote(req, res) {
     var note = req.body.noteText;
+    var addnewnote = function () {
+        var newtext = new Note({ noteText: note, userIP: method.getClientIp(req) });
+        var keyraw = newtext.get("_id");
+        var key = String(keyraw);
+        var trimkey = key.substr(6, 2) + key.substr(12, 2) + key.substr(22, 2);
+        newtext.set("fetchKey", trimkey);
+        newtext.save(function (err, note) {
+            if (err) {
+                console.log(err);
+                console.log(note);
+            }
+        });
+        res.setHeader('Set-Cookie', method.serialize('lastKey', trimkey));
+        res.write(trimkey);
+        res.end();
+    };
     if (note !== '') {
         req.cookies = method.parseCookie(req.headers["cookie"]);
         if ((req.body.keepkey != "true") || (!req.cookies.lastKey)) {
-            var newtext = new Note({ noteText: note, userIP: method.getClientIp(req) });
-            var keyraw = newtext.get("_id");
-            var key = String(keyraw);
-            var trimkey = key.substr(6, 2) + key.substr(12, 2) + key.substr(22, 2);
-            newtext.set("fetchKey", trimkey);
-            newtext.save(function (err, note) {
-                if (err) {
-                    console.log(err);
-                    console.log(note);
-                }
-            });
-            res.setHeader('Set-Cookie', method.serialize('lastKey', trimkey));
-            res.write(trimkey);
-            res.end();
+            addnewnote();
         }
         else {
             var lastKey = req.cookies.lastKey;
             Note.findOne({ "fetchKey": lastKey }, function (err, bsonres) {
                 if (err || bsonres == null) {
                     console.log(err);
-                    res.end();
+                    addnewnote();
                 }
                 else {
                     bsonres.set("noteText", note);
