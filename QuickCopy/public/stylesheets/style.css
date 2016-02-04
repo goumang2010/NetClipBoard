@@ -33,11 +33,17 @@ input[type="checkbox"].input-validation-error {
   display: none;
 }
 .navbar{
-	opacity: 0.9;
+	opacity: 1;
 }
 .navbar-inverse .navbar-nav > li > a {
-    color:#ccc;
+    color:#eee;
 }
-.navbar-inverse.navbar-brand{
-color:#ccc;
+.navbar-inverse .navbar-brand{
+   color:#eee;
  }
+.navbar-inverse {
+    background-color: #357ebd;
+}
+.jumbotron {
+    background-color: #fff;
+}

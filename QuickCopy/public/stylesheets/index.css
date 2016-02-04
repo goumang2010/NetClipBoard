@@ -10,6 +10,7 @@ float:left;
 }
 body{
 padding-top:0px;
+background-color: #eee;
 }
 #noteText{
  max-width:100%;
