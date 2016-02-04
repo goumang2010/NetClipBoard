@@ -37,6 +37,7 @@
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="Models\noteModel.ts" />
     <TypeScriptCompile Include="public\self\clientIndex.ts" />
+    <TypeScriptCompile Include="public\self\layout.ts" />
     <TypeScriptCompile Include="public\self\websocket.ts" />
     <TypeScriptCompile Include="public\typings\jquery.qrcode\jquery.qrcode.d.ts" />
     <TypeScriptCompile Include="public\typings\jquery\jquery.d.ts" />

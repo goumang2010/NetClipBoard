@@ -2,10 +2,10 @@ var method = require('./sharedmethod');
 function websocket(req, res) {
     req.cookies = method.parseCookie(req.headers["cookie"]);
     if (req.cookies.socketuser == undefined) {
-        res.render('websocket', { sysmsg: '欢迎第一次到来' });
+        res.render('websocket', { sysmsg: '欢迎第一次到来', year: new Date().getFullYear() });
     }
     else {
-        res.render('websocket', { sysmsg: '欢迎再次到来' });
+        res.render('websocket', { sysmsg: '欢迎再次到来', year: new Date().getFullYear() });
     }
 }
 exports.websocket = websocket;

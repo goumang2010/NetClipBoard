@@ -1,6 +1,5 @@
 var $note = $('#noteText');
 var keycode;
-var sch = $(document).height() - $(window).height();
 function addLoadEvent(func) {
     var oldonload = window.onload;
     if (typeof window.onload != 'function') {
@@ -151,16 +150,6 @@ function fetchText(data) {
 function errHandle(err) {
     alert("似乎是通信异常！请查看错误信息：" + err);
 }
-//监视滚动，适时隐藏导航栏
-$(window).scroll(function () {
-    var tval = $(document).scrollTop();
-    if (tval >= sch) {
-        $(".navbar").fadeOut();
-    }
-    else {
-        $(".navbar").show();
-    }
-});
 //三个按钮
 function toLower() {
     var orgstr = $note.text();
