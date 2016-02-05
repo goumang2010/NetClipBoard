@@ -9,7 +9,7 @@
       "commit": "7b3d5a6ea5acda4a81f71309f1cc62354e63b681"
     },
     "jquery/jquery.d.ts": {
-      "commit": "7b3d5a6ea5acda4a81f71309f1cc62354e63b681"
+      "commit": "4ec3c5bf291bc02f49eb30c1077340b235165c67"
     },
     "jquery.qrcode/jquery.qrcode.d.ts": {
       "commit": "7b3d5a6ea5acda4a81f71309f1cc62354e63b681"
@@ -19,6 +19,9 @@
     },
     "js-cookie/js-cookie.d.ts": {
       "commit": "717a5fdb079f8dd7c19f1b22f7f656dd990f0ccf"
+    },
+    "jquery.validation/jquery.validation.d.ts": {
+      "commit": "4ec3c5bf291bc02f49eb30c1077340b235165c67"
     }
   }
 }

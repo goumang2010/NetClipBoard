@@ -12,9 +12,18 @@ body{
 padding-top:0px;
 background-color: #eee;
 }
-#noteText{
- max-width:100%;
- height:200px;
+#key {
+    margin-bottom: 2px;
+}
+#noteText {
+    max-width: 100%;
+    height: 200px;
+    margin-top: 44px;
+    margin-bottom: 2px;
+}
+
+#handCode a{
+    font-size:1.5em;
 }
 
 label{
@@ -27,7 +36,10 @@ h1{
 br{
     line-height:1.8
 }
-#keepkey{
-    margin:2px 4px 0 12px;
-
+#keepkey {
+    margin: 12px 4px 0 12px;
 }
+.jumbotron p {
+    margin-bottom: 8px;
+}
+

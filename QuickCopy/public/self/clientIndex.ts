@@ -1,4 +1,5 @@
 ﻿    var $note = $('#noteText');
+    var $key = $("#key");
     var keycode;
     function addLoadEvent(func) {
         var oldonload = window.onload;
@@ -14,6 +15,12 @@
     addLoadEvent(function () {
         showQR(location.href, false);
         $note.focus();
+        $note.click(function () {
+            $note.parent().removeClass("has-error");
+        });
+        $key.click(function () {
+            $key.parent().removeClass("has-error");
+        });
     });
     function retoSocket() {
         window.open("/websocket");
@@ -29,6 +36,7 @@
         var notetext = $note.val();
         if (notetext == "") {
             toaWin("你没有输入任何东西", "warning");
+            $note.parent().addClass("has-error");
             $note.focus;
             return;
         }
@@ -51,10 +59,11 @@
         });
     }
     function ajaxFetch() {
-        var keytext: string = $('#key').val()
+        var keytext: string = $key.val()
         if (keytext.length != 6) {
             toaWin("请输入6位密码", "warning");
-            $('#key').focus();
+            $key.parent().addClass("has-error");
+            $key.focus();
             return;
         }
         $.ajax({
@@ -145,7 +154,7 @@
         }
         else {
             toaWin("没有找到对应的内容，请核查后重试", "error");
-            $('#key').focus();
+            $key.focus();
         }
 
     }

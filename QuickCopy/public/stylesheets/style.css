@@ -35,15 +35,22 @@ input[type="checkbox"].input-validation-error {
 .navbar{
 	opacity: 1;
 }
-.navbar-inverse .navbar-nav > li > a {
-    color:#eee;
+#nav a{
+   color:#eee!important;
 }
-.navbar-inverse .navbar-brand{
-   color:#eee;
- }
 .navbar-inverse {
     background-color: #357ebd;
+    border-color: #357ebd;
 }
 .jumbotron {
     background-color: #fff;
+}
+.error{
+    color:#a94442;
+}
+.modal-body > input{
+    min-width:100%;
+}
+.modal-dialog{
+    width:350px!important;
 }

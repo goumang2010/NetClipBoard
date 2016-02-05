@@ -31,20 +31,6 @@ $(function () {
     });
     //取得socket连接
     var socket = io();
-    //提交聊天消息内容
-    function sendMsg() {
-        var content = $('#chatText').val();
-        if (content != '') {
-            //var obj = {
-            //    userid: this.userid,
-            //    username: this.username,
-            //    content: content
-            //};
-            socket.emit('message', content);
-            $('#chatText').val('');
-        }
-        return false;
-    }
     /**
      * 将用户列表信息同步到UI上
      * @param username 用户名
@@ -105,7 +91,7 @@ $(function () {
         }
     }
     // Sends a chat message
-    function sendMessage() {
+    function sendMsg() {
         var message = $inputMessage.val();
         // Prevent markup from being injected into the message
         message = cleanInput(message);
@@ -234,12 +220,9 @@ $(function () {
         if (!(event.ctrlKey || event.metaKey || event.altKey)) {
             $currentInput.focus();
         }
-        // When the client hits ENTER on their keyboard
+        // 监听回车键
         if (event.which === 13) {
             if (username) {
-                sendMessage();
-                socket.emit('stop typing');
-                typing = false;
             }
             else {
                 var tempname = cleanInput($usrInput.val().trim());
@@ -258,6 +241,9 @@ $(function () {
     // Focus input when clicking on the message input's border
     $inputMessage.click(function () {
         $inputMessage.focus();
+    });
+    $("#sendBtn").click(function () {
+        sendMsg();
     });
     // Socket events
     socket.on('connect', function () {
