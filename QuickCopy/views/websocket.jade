@@ -9,6 +9,7 @@ block content
       .col-md-10.chatArea
        ul#msglist.messages
        textarea#textInput(placeholder="在此输入..",rows="3").inputMessage.form-control
+       button#sendBtn.btn.btn-primary(type="button",onclick="sendMsg()")="发送"
     li.login.page
      .form
        h3.title 请输入一个你的代号并回车
@@ -16,7 +17,6 @@ block content
 block scripthead
     link(rel='stylesheet', type='text/css', href='/stylesheets/websocket.css')
 block scripts  
-    script(src='//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js')
     script(src="/javascripts/socket.io.js") 
     script(src="/self/websocket.js")
     script(src="//apps.bdimg.com/libs/js-cookie/2.04/js.cookie.min.js")

@@ -36,17 +36,21 @@
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="Models\noteModel.ts" />
+    <TypeScriptCompile Include="Models\userModel.ts" />
     <TypeScriptCompile Include="public\self\clientIndex.ts" />
     <TypeScriptCompile Include="public\self\layout.ts" />
     <TypeScriptCompile Include="public\self\websocket.ts" />
     <TypeScriptCompile Include="public\typings\jquery.qrcode\jquery.qrcode.d.ts" />
+    <TypeScriptCompile Include="public\typings\jquery.validation\jquery.validation.d.ts" />
     <TypeScriptCompile Include="public\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="public\typings\js-cookie\js-cookie.d.ts" />
     <TypeScriptCompile Include="public\typings\socket.io-client\socket.io-client.d.ts" />
     <TypeScriptCompile Include="public\typings\toastr\toastr.d.ts" />
     <TypeScriptCompile Include="public\typings\tsd.d.ts" />
     <TypeScriptCompile Include="routes\index.ts" />
     <TypeScriptCompile Include="routes\sharedmethod.ts" />
     <TypeScriptCompile Include="routes\socketctrl.ts" />
+    <TypeScriptCompile Include="routes\User.ts" />
     <TypeScriptCompile Include="Schemas\note.ts" />
     <TypeScriptCompile Include="Schemas\user.ts" />
     <TypeScriptCompile Include="Scripts\typings\express\express.d.ts" />
@@ -92,6 +96,8 @@
     <Folder Include="Models\" />
     <Folder Include="public\typings\" />
     <Folder Include="public\typings\jquery.qrcode\" />
+    <Folder Include="public\typings\jquery.validation\" />
+    <Folder Include="public\typings\js-cookie\" />
     <Folder Include="public\typings\socket.io-client\" />
     <Folder Include="public\typings\toastr\" />
     <Folder Include="Schemas\" />

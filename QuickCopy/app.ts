@@ -1,10 +1,14 @@
 ﻿import express = require('express');
+//路由
 import routes = require('./routes/index');
 import socketctrl = require('./routes/socketctrl');
+import user = require('./routes/user');
+//模块
 import socketio = require('socket.io');
 import http = require('http');
 import path = require('path');
 import mongoose = require('mongoose');
+import compression = require('compression');
 const MongoStore = require('connect-mongo')(express);
 var dbUrl = 'mongodb://localhost/netnote'
 mongoose.connect(dbUrl)
@@ -26,6 +30,7 @@ app.use(express.methodOverride());
 app.use(express.cookieParser());
 
 import stylus = require('stylus');
+app.use(compression()); //use compression 
 app.use(stylus.middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -51,9 +56,15 @@ app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 //WenbSocket页面
 app.get('/websocket', socketctrl.websocket);
+//增加note
 app.post('/addnote', routes.addnote);
+//通过get取得note
 app.get('/fetch', routes.fetch);
+//通过ajax取得note
 app.post('/ajaxfetch', routes.ajaxfetch);
+//注册
+app.post('/user/signup', user.signup);
+
 
 var server = http.createServer(app);
 
