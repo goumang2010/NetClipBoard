@@ -55,5 +55,6 @@
         }
     }
 
-    $("form").validate(options);
+    $("#signinForm").validate(options);
+    $("#signupForm").validate(options);
 });

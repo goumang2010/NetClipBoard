@@ -53,6 +53,7 @@ $(function () {
             }
         }
     };
-    $("form").validate(options);
+    $("#signinForm").validate(options);
+    $("#signupForm").validate(options);
 });
 //# sourceMappingURL=layout.js.map
