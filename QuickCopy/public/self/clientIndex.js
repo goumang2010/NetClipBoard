@@ -24,7 +24,7 @@ addLoadEvent(function () {
     });
 });
 function retoSocket() {
-    window.open("/websocket");
+    window.open("/websocket?text=" + $note.val());
     return false;
 }
 //Ajax提交与取回

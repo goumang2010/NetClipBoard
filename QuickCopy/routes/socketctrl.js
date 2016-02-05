@@ -1,12 +1,9 @@
 var method = require('./sharedmethod');
 function websocket(req, res) {
+    var lasttext = req.query.text;
     req.cookies = method.parseCookie(req.headers["cookie"]);
-    if (req.cookies.socketuser == undefined) {
-        res.render('websocket', { sysmsg: '欢迎第一次到来', year: new Date().getFullYear() });
-    }
-    else {
-        res.render('websocket', { sysmsg: '欢迎再次到来', year: new Date().getFullYear() });
-    }
+    var option = { sysmsg: (req.cookies.socketuser == undefined ? '欢迎第一次到来' : '欢迎再次到来'), text: lasttext, year: new Date().getFullYear() };
+    res.render('websocket', option);
 }
 exports.websocket = websocket;
 ;

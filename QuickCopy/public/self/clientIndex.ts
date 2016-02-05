@@ -23,7 +23,7 @@
         });
     });
     function retoSocket() {
-        window.open("/websocket");
+        window.open("/websocket?text=" + $note.val());
         return false;
     }
 
