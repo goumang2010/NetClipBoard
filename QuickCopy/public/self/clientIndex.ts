@@ -125,26 +125,7 @@
         $(window).scrollTop(t);
 
     }
-    function toaWin(content: string, state: string = "success") {
-        toastr.options = {
-            closeButton: false,
-            debug: false,
-            newestOnTop: false,
-            progressBar: false,
-            positionClass: "toast-top-center",
-            preventDuplicates: false,
-            onclick: null,
-            showDuration: 300,
-            hideDuration: 1000,
-            timeOut: 5000,
-            extendedTimeOut: 1000,
-            showEasing: "swing",
-            hideEasing: "linear",
-            showMethod: "fadeIn",
-            hideMethod: "fadeOut"
-        }
-        toastr[state](content)
-    }
+
     function fetchText(data) {
         if (data != "") {
             $note.val(data);
@@ -156,10 +137,6 @@
             toaWin("没有找到对应的内容，请核查后重试", "error");
             $key.focus();
         }
-
-    }
-    function errHandle(err) {
-        alert("似乎是通信异常！请查看错误信息：" + err);
     }
 
     //三个按钮

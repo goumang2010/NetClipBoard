@@ -10,6 +10,10 @@ var UserSchema = new mongoose.Schema({
         unique: true,
         type: String
     },
+    email: {
+        unique: true,
+        type: String
+    },
     meta: {
         createAt: {
             type: Date,

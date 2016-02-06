@@ -4,3 +4,4 @@
 /// <reference path="socket.io-client/socket.io-client.d.ts" />
 /// <reference path="js-cookie/js-cookie.d.ts" />
 /// <reference path="jquery.validation/jquery.validation.d.ts" />
+/// <reference path="bootstrap/bootstrap.d.ts" />

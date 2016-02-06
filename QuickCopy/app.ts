@@ -2,7 +2,7 @@
 //路由
 import routes = require('./routes/index');
 import socketctrl = require('./routes/socketctrl');
-import user = require('./routes/user');
+import user = require('./routes/userctrl');
 //模块
 import socketio = require('socket.io');
 import http = require('http');

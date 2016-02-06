@@ -9,7 +9,7 @@
       "commit": "7b3d5a6ea5acda4a81f71309f1cc62354e63b681"
     },
     "jquery/jquery.d.ts": {
-      "commit": "4ec3c5bf291bc02f49eb30c1077340b235165c67"
+      "commit": "c393f8974d44840a6c9cc6d5b5c0188a8f05143d"
     },
     "jquery.qrcode/jquery.qrcode.d.ts": {
       "commit": "7b3d5a6ea5acda4a81f71309f1cc62354e63b681"
@@ -22,6 +22,9 @@
     },
     "jquery.validation/jquery.validation.d.ts": {
       "commit": "4ec3c5bf291bc02f49eb30c1077340b235165c67"
+    },
+    "bootstrap/bootstrap.d.ts": {
+      "commit": "c393f8974d44840a6c9cc6d5b5c0188a8f05143d"
     }
   }
 }

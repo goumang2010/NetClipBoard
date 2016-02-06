@@ -55,6 +55,94 @@
         }
     }
 
-    $("#signinForm").validate(options);
-    $("#signupForm").validate(options);
+  
+   function signupop () {
+        options.submitHandler = function (form) {
+            $.ajax({
+                url: "/user/signup",
+                data: {
+                    
+                        name: $("#signupName").val(),
+                        password: $("#signupPassword").val(),
+                        email: $("#signupEmail").val()
+                },
+                type: 'post',
+                cache: false,
+                success: function (data) {
+                    if (data == "success") {
+                        $('#signupModal').modal('hide');
+                        toaWin("注册成功！请尝试新的内容");
+                    }
+                    else
+                    {
+                        toaWin("注册失败！"+data,"error");
+
+                    }
+
+                },
+                error: function (err) {
+                    errHandle(err);
+                }
+            });
+            
+       }
+        return options;
+    }
+   function signinop() {
+       options.submitHandler = function (form) {
+           $.ajax({
+               url: "/user/signin",
+               data: {
+
+                   name: $("#signinName").val(),
+                   password: $("#signinPassword").val()
+
+               },
+               type: 'post',
+               cache: false,
+               success: function (data) {
+                   if (data == "success") {
+                       $('#signinModal').modal('hide');
+                       toaWin("登录成功！请尝试新的内容");
+                   }
+                   else {
+                       toaWin("注册失败！" + data, "error");
+
+                   }
+
+               },
+               error: function (err) {
+                   errHandle(err);
+               }
+           });
+
+       }
+       return options;
+   }
+   $("#signupForm").validate(signupop());
+   $("#signinForm").validate(signinop());
 });
+
+function errHandle(err) {
+    alert("似乎是通信异常！请查看错误信息：" + err);
+}
+function toaWin(content: string, state: string = "success") {
+    toastr.options = {
+        closeButton: false,
+        debug: false,
+        newestOnTop: false,
+        progressBar: false,
+        positionClass: "toast-top-center",
+        preventDuplicates: false,
+        onclick: null,
+        showDuration: 300,
+        hideDuration: 1000,
+        timeOut: 5000,
+        extendedTimeOut: 1000,
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+    }
+    toastr[state](content)
+}

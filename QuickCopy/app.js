@@ -2,7 +2,7 @@ var express = require('express');
 //路由
 var routes = require('./routes/index');
 var socketctrl = require('./routes/socketctrl');
-var user = require('./routes/user');
+var user = require('./routes/userctrl');
 //模块
 var socketio = require('socket.io');
 var http = require('http');

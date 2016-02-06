@@ -50,7 +50,7 @@
     <TypeScriptCompile Include="routes\index.ts" />
     <TypeScriptCompile Include="routes\sharedmethod.ts" />
     <TypeScriptCompile Include="routes\socketctrl.ts" />
-    <TypeScriptCompile Include="routes\User.ts" />
+    <TypeScriptCompile Include="routes\userctrl.ts" />
     <TypeScriptCompile Include="Schemas\note.ts" />
     <TypeScriptCompile Include="Schemas\user.ts" />
     <TypeScriptCompile Include="Scripts\typings\express\express.d.ts" />
