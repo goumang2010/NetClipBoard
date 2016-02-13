@@ -24,8 +24,7 @@ block content
             label(for="keepkey") 保持密码           
           textarea#noteText.form-control(name="noteText" rows="3") #{noteText}
           button.btn.btn-primary(type="button",onclick="submitAjax()")="提交"
-          &nbsp;
-          button.btn.btn-primary(type="button",onclick="retoSocket()")="对话" 
+          button.btn.btn-primary(type="button",onclick="retoSocket()",style="margin-left:5px")="对话" 
 block scripthead
     link(rel='stylesheet', type='text/css', href='/stylesheets/index.css')
 block scripts  
