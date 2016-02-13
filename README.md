@@ -10,5 +10,4 @@
 网址
 -------
 试验地址：http://node.chuune.top
-
-我的wiki：http://wiki.chuune.top
+Wiki：http://wiki.chuune.top/p/NetClipBoard
