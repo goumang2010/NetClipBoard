@@ -6,6 +6,7 @@
     <Name>QuickCopy</Name>
     <RootNamespace>QuickCopy</RootNamespace>
     <NameOfLastUsedPublishProfile>local</NameOfLastUsedPublishProfile>
+    <LaunchUrl>http://localhost:3000</LaunchUrl>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -21,11 +22,11 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
     <ProjectView>ShowAllFiles</ProjectView>
-    <NodejsPort>1337</NodejsPort>
+    <NodejsPort>3000</NodejsPort>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
     <EnableTypeScript>true</EnableTypeScript>
-    <StartWebBrowser>true</StartWebBrowser>
+    <StartWebBrowser>True</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,13 +54,7 @@
     <TypeScriptCompile Include="routes\userctrl.ts" />
     <TypeScriptCompile Include="Schemas\note.ts" />
     <TypeScriptCompile Include="Schemas\user.ts" />
-    <TypeScriptCompile Include="Scripts\typings\express\express.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\mongoose\mongoose.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\socket.io\socket.io.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\stylus\stylus.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\tsd.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="OpenDB.bat" />
@@ -111,12 +106,6 @@
     <Folder Include="public\self\" />
     <Folder Include="Scripts\typings\" />
     <Folder Include="public\typings\jquery\" />
-    <Folder Include="Scripts\typings\express\" />
-    <Folder Include="Scripts\typings\mongoose\" />
-    <Folder Include="Scripts\typings\socket.io\" />
-    <Folder Include="Scripts\typings\underscore\" />
-    <Folder Include="Scripts\typings\node\" />
-    <Folder Include="Scripts\typings\stylus\" />
     <Folder Include="views\" />
   </ItemGroup>
   <ItemGroup>

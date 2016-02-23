@@ -6,7 +6,7 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "node/node.d.ts": {
-      "commit": "4ec3c5bf291bc02f49eb30c1077340b235165c67"
+      "commit": "bd269cad4cb2b495f940c7b6afc5825d568029be"
     },
     "socket.io/socket.io.d.ts": {
       "commit": "86dbea8fc37d9473fee465da4f0a21bea4f8cbd9"
@@ -15,31 +15,46 @@
       "commit": "3d2f9971a107e2eee2de3ec5318f5c54071e16ed"
     },
     "mime/mime.d.ts": {
-      "commit": "4ec3c5bf291bc02f49eb30c1077340b235165c67"
+      "commit": "bd269cad4cb2b495f940c7b6afc5825d568029be"
     },
     "mongodb/mongodb.d.ts": {
-      "commit": "3d2f9971a107e2eee2de3ec5318f5c54071e16ed"
+      "commit": "bd269cad4cb2b495f940c7b6afc5825d568029be"
     },
     "es6-promise/es6-promise.d.ts": {
       "commit": "3d2f9971a107e2eee2de3ec5318f5c54071e16ed"
     },
     "express-session/express-session.d.ts": {
-      "commit": "3d2f9971a107e2eee2de3ec5318f5c54071e16ed"
+      "commit": "bd269cad4cb2b495f940c7b6afc5825d568029be"
     },
     "express/express.d.ts": {
-      "commit": "4ec3c5bf291bc02f49eb30c1077340b235165c67"
+      "commit": "bd269cad4cb2b495f940c7b6afc5825d568029be"
     },
     "serve-static/serve-static.d.ts": {
-      "commit": "4ec3c5bf291bc02f49eb30c1077340b235165c67"
+      "commit": "bd269cad4cb2b495f940c7b6afc5825d568029be"
     },
     "connect-mongo/connect-mongo.d.ts": {
-      "commit": "3d2f9971a107e2eee2de3ec5318f5c54071e16ed"
+      "commit": "bd269cad4cb2b495f940c7b6afc5825d568029be"
     },
     "mongoose/mongoose.d.ts": {
-      "commit": "3d2f9971a107e2eee2de3ec5318f5c54071e16ed"
+      "commit": "bd269cad4cb2b495f940c7b6afc5825d568029be"
     },
     "compression/compression.d.ts": {
       "commit": "4ec3c5bf291bc02f49eb30c1077340b235165c67"
+    },
+    "morgan/morgan.d.ts": {
+      "commit": "bd269cad4cb2b495f940c7b6afc5825d568029be"
+    },
+    "body-parser/body-parser.d.ts": {
+      "commit": "bd269cad4cb2b495f940c7b6afc5825d568029be"
+    },
+    "cookie-parser/cookie-parser.d.ts": {
+      "commit": "bd269cad4cb2b495f940c7b6afc5825d568029be"
+    },
+    "serve-favicon/serve-favicon.d.ts": {
+      "commit": "bd269cad4cb2b495f940c7b6afc5825d568029be"
+    },
+    "connect/connect.d.ts": {
+      "commit": "bd269cad4cb2b495f940c7b6afc5825d568029be"
     }
   }
 }
