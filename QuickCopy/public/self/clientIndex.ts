@@ -1,4 +1,5 @@
-﻿    var $note = $('#noteText');
+﻿$(function () { 
+var $note = $('#noteText');
     var $key = $("#key");
     var keycode;
     function addLoadEvent(func) {
@@ -22,17 +23,18 @@
             $key.parent().removeClass("has-error");
         });
     });
-    function retoSocket() {
+    //进入Websocket对话
+    $("#retoSocket").click(function () {
         window.open("/websocket?text=" + $note.val());
         return false;
-    }
+    });
 
     //Ajax提交与取回
 
     /**
      * Ajax提交
      */
-    function submitAjax() {
+    $("#submitAjax").click(function() {
         var notetext = $note.val();
         if (notetext == "") {
             toaWin("你没有输入任何东西", "warning");
@@ -57,8 +59,9 @@
                 errHandle(err);
             }
         });
-    }
-    function ajaxFetch() {
+    });
+
+    $("#ajaxFetch").click(function () {
         var keytext: string = $key.val()
         if (keytext.length != 6) {
             toaWin("请输入6位密码", "warning");
@@ -80,7 +83,7 @@
                 errHandle(err);
             }
         });
-    }
+    });
     function showQR(data, toa: boolean = true) {
 
         var display = (<string>data)
@@ -140,16 +143,17 @@
     }
 
     //三个按钮
-    function toLower() {
+    $("#toLower").click(function () {
         var orgstr: string = $note.text();
         $note.text(orgstr.toLowerCase());
-    }
-    function toUpper() {
+    });
+    $("#toUpper").click(function () {
         var orgstr: string = $note.text();
         $note.text(orgstr.toUpperCase());
-    }
-    function copyToBoard() {
+    });
+    $("#copyToBoard").click(function () {
         $note.focus();
         $note.select();
         document.execCommand("copy");
-    }
+    });
+});
