@@ -1,3 +1,4 @@
+/// <reference path="./Scripts/typings/tsd.d.ts" />
 var express = require('express');
 //路由
 var routes = require('./routes/index');
@@ -78,7 +79,7 @@ mongoose.connect(dbUrl, function (err) {
         secret: 'netnote',
         store: new MongoStore({
             url: dbUrl,
-            collection: "sessions",
+            collection: "sessions"
         }),
         //https://github.com/expressjs/session/issues/56
         saveUninitialized: true,
@@ -89,4 +90,3 @@ mongoose.connect(dbUrl, function (err) {
     socketio.listen(server).on('connection', socketctrl.socketlitener);
 });
 module.exports = app;
-//# sourceMappingURL=app.js.map

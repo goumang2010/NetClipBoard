@@ -1,3 +1,4 @@
+/// <reference path="../Scripts/typings/mongoose/mongoose.d.ts" />
 var mongoose = require('mongoose');
 var NoteSchema = new mongoose.Schema({
     userIP: String,
@@ -35,4 +36,3 @@ NoteSchema.static("findById", function (id, cb) {
         .exec(cb);
 });
 module.exports = NoteSchema;
-//# sourceMappingURL=note.js.map

@@ -1,4 +1,5 @@
-﻿import express = require('express');
+﻿/// <reference path="./Scripts/typings/tsd.d.ts" />
+import express = require('express');
 //路由
 import routes = require('./routes/index');
 import socketctrl = require('./routes/socketctrl');

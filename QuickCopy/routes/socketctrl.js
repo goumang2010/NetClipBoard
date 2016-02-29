@@ -35,12 +35,12 @@ function socketlitener(socket) {
         if (username && Users.indexOf(username) < 0) {
             socket.emit('user status', {
                 username: username,
-                status: "OK",
+                status: "OK"
             });
         }
         else {
             socket.emit('user status', {
-                staus: "Name Repeat",
+                staus: "Name Repeat"
             });
         }
     });
@@ -89,4 +89,3 @@ function socketlitener(socket) {
     });
 }
 exports.socketlitener = socketlitener;
-//# sourceMappingURL=socketctrl.js.map

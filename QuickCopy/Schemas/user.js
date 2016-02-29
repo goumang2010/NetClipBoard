@@ -52,4 +52,3 @@ UserSchema.static("findById", function (id, cb) {
     return (this.findOne({ _id: id }).exec(cb));
 });
 module.exports = UserSchema;
-//# sourceMappingURL=user.js.map

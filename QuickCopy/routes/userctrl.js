@@ -15,4 +15,3 @@ function signup(req, res) {
     });
 }
 exports.signup = signup;
-//# sourceMappingURL=userctrl.js.map

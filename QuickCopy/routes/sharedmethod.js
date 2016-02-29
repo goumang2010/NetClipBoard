@@ -42,4 +42,3 @@ function serialize(name, val, opt) {
 }
 exports.serialize = serialize;
 ;
-//# sourceMappingURL=sharedmethod.js.map

@@ -6,7 +6,7 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "node/node.d.ts": {
-      "commit": "bd269cad4cb2b495f940c7b6afc5825d568029be"
+      "commit": "dade4414712ce84e3c63393f1aae407e9e7e6af7"
     },
     "socket.io/socket.io.d.ts": {
       "commit": "86dbea8fc37d9473fee465da4f0a21bea4f8cbd9"
@@ -55,6 +55,51 @@
     },
     "connect/connect.d.ts": {
       "commit": "bd269cad4cb2b495f940c7b6afc5825d568029be"
+    },
+    "stylus/stylus.d.ts": {
+      "commit": "dade4414712ce84e3c63393f1aae407e9e7e6af7"
+    },
+    "underscore/underscore.d.ts": {
+      "commit": "dade4414712ce84e3c63393f1aae407e9e7e6af7"
+    },
+    "gulp/gulp.d.ts": {
+      "commit": "b10e5ade29708bb0a7d21916a9fe289973520e89"
+    },
+    "orchestrator/orchestrator.d.ts": {
+      "commit": "b10e5ade29708bb0a7d21916a9fe289973520e89"
+    },
+    "glob/glob.d.ts": {
+      "commit": "b10e5ade29708bb0a7d21916a9fe289973520e89"
+    },
+    "del/del.d.ts": {
+      "commit": "b10e5ade29708bb0a7d21916a9fe289973520e89"
+    },
+    "minimatch/minimatch.d.ts": {
+      "commit": "b10e5ade29708bb0a7d21916a9fe289973520e89"
+    },
+    "gulp-concat/gulp-concat.d.ts": {
+      "commit": "b10e5ade29708bb0a7d21916a9fe289973520e89"
+    },
+    "gulp-uglify/gulp-uglify.d.ts": {
+      "commit": "b10e5ade29708bb0a7d21916a9fe289973520e89"
+    },
+    "clean-css/clean-css.d.ts": {
+      "commit": "b10e5ade29708bb0a7d21916a9fe289973520e89"
+    },
+    "gulp-rename/gulp-rename.d.ts": {
+      "commit": "b10e5ade29708bb0a7d21916a9fe289973520e89"
+    },
+    "source-map/source-map.d.ts": {
+      "commit": "b10e5ade29708bb0a7d21916a9fe289973520e89"
+    },
+    "uglify-js/uglify-js.d.ts": {
+      "commit": "b10e5ade29708bb0a7d21916a9fe289973520e89"
+    },
+    "gulp-minify-css/gulp-minify-css.d.ts": {
+      "commit": "b10e5ade29708bb0a7d21916a9fe289973520e89"
+    },
+    "q/Q.d.ts": {
+      "commit": "c0d876601e0f8236fd6b57626eb62c4e485f1563"
     }
   }
 }

@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="Gruntfile.ts" />
     <TypeScriptCompile Include="Models\noteModel.ts" />
     <TypeScriptCompile Include="Models\userModel.ts" />
     <TypeScriptCompile Include="public\self\clientIndex.ts" />
