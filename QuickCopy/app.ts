@@ -47,23 +47,39 @@ app.use(stylus.middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-//app.use(app.router);
-app.get('/', routes.index);
-app.get('/about', routes.about);
-app.get('/contact', routes.contact);
-//WenbSocket页面
-app.get('/websocket', socketctrl.websocket);
-//增加note
-app.post('/addnote', routes.addnote);
-//通过get取得note
-app.get('/fetch', routes.fetch);
-//通过ajax取得note
-app.post('/ajaxfetch', routes.ajaxfetch);
-//注册
-app.post('/user/signup', user.signup);
 
+var dbUrl = 'mongodb://localhost/netnote';
+import session = require('express-session');
+mongoose.connect(dbUrl, function (err: any) {
+   
+    const MongoStore = require('connect-mongo')(session);
+    app.use(session({
+        secret: 'netnote',
+        store: new MongoStore({
+            url: dbUrl,
+            collection: "sessions",
+        }),
+        //https://github.com/expressjs/session/issues/56
+        saveUninitialized: true,
+        resave: true
+    }));
 
-// catch 404 and forward to error handler
+        //app.use(app.router);
+    app.get('/', routes.index);
+    app.get('/about', routes.about);
+    app.get('/contact', routes.contact);
+    //WenbSocket页面
+    app.get('/websocket', socketctrl.websocket);
+    //增加note
+    app.post('/addnote', routes.addnote);
+    //通过get取得note
+    app.get('/fetch', routes.fetch);
+    //通过ajax取得note
+    app.post('/ajaxfetch', routes.ajaxfetch);
+    //注册
+    app.post('/user/signup', user.signup);
+
+    // catch 404 and forward to error handler
 app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {
     var err:any = new Error('Not Found');
     err.status = 404;
@@ -94,25 +110,15 @@ app.use(function (err: any, req: express.Request, res: express.Response, next: e
     });
 });
 
-var dbUrl = 'mongodb://localhost/netnote';
-import session = require('express-session');
-mongoose.connect(dbUrl, function (err: any) {
-   
-    const MongoStore = require('connect-mongo')(session);
-    app.use(session({
-        secret: 'netnote',
-        store: new MongoStore({
-            url: dbUrl,
-            collection: "sessions",
-        }),
-        //https://github.com/expressjs/session/issues/56
-        saveUninitialized: true,
-        resave: true
-    }));
     var server = app.listen(3000);
     //WebSocket处理
     socketio.listen(server).on('connection', socketctrl.socketlitener);
+
 });
+
+
+
+
 
 
 module.exports = app;
