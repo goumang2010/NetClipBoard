@@ -1,29 +1,68 @@
+/// <reference path="../Scripts/typings/tsd.d.ts" />
+var async = require('async');
 var userraw = require('../Models/userModel');
 var User = userraw;
 function signup(req, res) {
     var _user = req.body;
     var user = new User({ name: _user.name, password: _user.password, email: _user.email });
-    // console.log(user);
-    user.save(function (err, user_saved) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log(user_saved);
-            //write cookie and session
-            req.session.userinfo = user_saved.name;
-            req.cookies.userinfo = user_saved.name;
-            //expire after 1 hour
-            var hour = 3600000;
-            req.session.cookie.expires = new Date(Date.now() + hour);
-            req.session.cookie.maxAge = hour;
-            req.session.save(function (err) {
+    //OK --100
+    //name dupilicated --101
+    //email duplicated --102
+    async.waterfall([
+        function (cb) {
+            console.log("check name");
+            User.findOne({ "name": _user.name }, function (err, bsonres) {
+                if (err || (bsonres != null)) {
+                    res.end("101");
+                    return;
+                }
+                else {
+                    cb();
+                }
+            });
+        },
+        function (cb) {
+            console.log("check email");
+            User.findOne({ "email": _user.email }, function (err, bsonres) {
+                if (err || (bsonres != null)) {
+                    console.log(err);
+                    res.end("102");
+                    return;
+                }
+                else {
+                    cb();
+                }
+            });
+        },
+        function (cb) {
+            user.save(function (err, user_saved) {
                 if (err) {
                     console.log(err);
                 }
+                else {
+                    console.log(user_saved);
+                    //write cookie and session
+                    var sess = req.session;
+                    sess.userinfosess = user_saved.name;
+                    req.cookies.userinfocok = user_saved.name;
+                    //expire after 1 hour
+                    var hour = 3600000;
+                    req.session.cookie.expires = new Date(Date.now() + hour);
+                    req.session.cookie.maxAge = hour;
+                    req.session.save(function (err) {
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                    console.log("save data");
+                    res.end("100");
+                    return;
+                }
             });
-            res.end("success");
-        }
+        }], function (err) {
+        if (err)
+            console.error(err.message);
+        res.end("ccc");
     });
 }
 exports.signup = signup;
