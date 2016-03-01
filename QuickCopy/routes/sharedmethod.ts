@@ -31,3 +31,18 @@ export function serialize(name, val:string, opt=null) {
     if (opt.secure) pairs.push('Secure');
     return pairs.join(';  ');
 };
+
+export class sess {
+    private session;
+    private _userinfo:any;
+    constructor(req:any){
+        this.session=req.session;
+    }
+
+     getitem(name:string) {
+        return this.session[name];
+    }
+    setitem(name:string,value:any) {
+        this.session[name]=value;
+    }
+}

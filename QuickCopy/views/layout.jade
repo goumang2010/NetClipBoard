@@ -27,14 +27,14 @@ html
             li
               a(href='https://github.com/goumang2010/NetClipBoard',target="_blank") GitHub
             li
-              a(href='http://wiki.chuune.top/wiki/NetClipBoard',target="_blank") WiKi
+              a(href='http://wiki.chuune.cn/wiki/NetClipBoard',target="_blank") WiKi
           p.navbar-text.navbar-right
             if userinfo === undefined
               a.navbar-link(href="#",data-toggle="modal",data-target="#signupModal") 注册
               span &nbsp;|&nbsp;
               a.navbar-link(href="#",data-toggle="modal",data-target="#signinModal") 登录
             else
-              a.navbar-link #{userinfo}
+              a#username.navbar-link #{userinfo}
               span &nbsp;|&nbsp;
               a.navbar-link 退出
     .container.body-content

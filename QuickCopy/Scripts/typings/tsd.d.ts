@@ -30,3 +30,4 @@
 /// <reference path="source-map/source-map.d.ts" />
 /// <reference path="uglify-js/uglify-js.d.ts" />
 /// <reference path="q/Q.d.ts" />
+/// <reference path="async/async.d.ts" />

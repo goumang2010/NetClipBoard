@@ -42,3 +42,16 @@ function serialize(name, val, opt) {
 }
 exports.serialize = serialize;
 ;
+var sess = (function () {
+    function sess(req) {
+        this.session = req.session;
+    }
+    sess.prototype.getitem = function (name) {
+        return this.session[name];
+    };
+    sess.prototype.setitem = function (name, value) {
+        this.session[name] = value;
+    };
+    return sess;
+})();
+exports.sess = sess;

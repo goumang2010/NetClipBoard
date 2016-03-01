@@ -2,7 +2,7 @@ var noteraw = require('../Models/noteModel');
 var method = require('./sharedmethod');
 var Note = noteraw;
 function index(req, res) {
-    res.render('index', { title: 'NetClipBoard', year: new Date().getFullYear() });
+    res.render('index', { title: 'NetClipBoard', year: new Date().getFullYear(), userinfo: new method.sess(req).getitem("userinfosess") });
 }
 exports.index = index;
 ;

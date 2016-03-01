@@ -3,6 +3,7 @@ import async = require('async');
 import express = require('express');
 import mongoose = require('mongoose');
 import userraw = require('../Models/userModel');
+import method = require('./sharedmethod');
 var User = <mongoose.Model<mongoose.Document>>userraw;
 export function signup(req: express.Request, res: express.Response) {
     var _user = req.body;
@@ -49,10 +50,8 @@ export function signup(req: express.Request, res: express.Response) {
         else {
             console.log(user_saved);
             //write cookie and session
-            var sess:any = req.session;
-
-            sess.userinfosess= user_saved.name;
             req.cookies.userinfocok = user_saved.name;
+            new method.sess(req).setitem("userinfosess",user_saved.name)
             //expire after 1 hour
             var hour = 3600000;
             req.session.cookie.expires = new Date(Date.now() + hour);

@@ -69,15 +69,23 @@ $(function () {
                 type: 'post',
                 cache: false,
                 success: function (data) {
-                    if (data == "success") {
+                  switch(data)
+                  {
+                    case '100':
                         $('#signupModal').modal('hide');
                         toaWin("注册成功！请尝试新的内容");
-                    }
-                    else
-                    {
-                        toaWin("注册失败！"+data,"error");
+                        break;
+                     case '101':
+                         toaWin("注册失败！"+"用户名重复");
+                         break;
+                      case '102':
+                         toaWin("注册失败！"+"邮箱地址重复");
+                         break;
+                      default:
+                         toaWin("注册失败！"+data+"error");
+                         break;
 
-                    }
+                  }
 
                 },
                 error: function (err) {

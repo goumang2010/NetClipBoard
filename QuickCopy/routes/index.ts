@@ -1,4 +1,4 @@
-﻿/// <reference path="../Scripts/typings/tsd.d.ts" />
+/// <reference path="../Scripts/typings/tsd.d.ts" />
 /*
  * GET home page.
  */
@@ -11,13 +11,12 @@ var Note = <mongoose.Model<mongoose.Document>>noteraw;
 //var NoteSchema = <mongoose.Schema> noteschema 
 import _ = require('underscore');
 export function index(req: express.Request, res: express.Response) {
-    res.render('index', { title: 'NetClipBoard', year: new Date().getFullYear(),userinfo:req.session.userinfo });
+    res.render('index', { title: 'NetClipBoard', year: new Date().getFullYear(),userinfo: new method.sess(req).getitem("userinfosess")});
 
 };
 
 export function about(req: express.Request, res: express.Response) {
         res.render('about', { title: 'About', year: new Date().getFullYear(), message: 'Your application description page' });
-       
 };
 
 
@@ -56,7 +55,6 @@ export function ajaxfetch(req: express.Request, res: express.Response) {
 };
 
 export function fetch(req: express.Request, res: express.Response) {
-
     var key = req.query.key;
     var keystr: string = key;
     if (keystr.length == 6) {
@@ -69,7 +67,6 @@ export function fetch(req: express.Request, res: express.Response) {
                 var text = bsonres.get("noteText");
                 res.render('index', { title: 'NetClipBoard', year: new Date().getFullYear(), noteText: text });
             }
-
         });
     }
     else {
