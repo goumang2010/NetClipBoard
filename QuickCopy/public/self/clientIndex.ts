@@ -1,4 +1,6 @@
-﻿$(function () { 
+﻿/// <reference path="../typings/tsd.d.ts" />
+/// <reference path="./layout.ts" />
+$(function () { 
 var $note = $('#noteText');
     var $key = $("#key");
     var keycode;

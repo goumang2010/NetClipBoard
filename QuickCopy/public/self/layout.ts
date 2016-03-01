@@ -1,4 +1,5 @@
-﻿$(function () {
+﻿/// <reference path="../typings/tsd.d.ts" />
+$(function () {
 
     var sch = $(document).height() - $(window).height();
     //监视滚动，适时隐藏导航栏
@@ -61,7 +62,6 @@
             $.ajax({
                 url: "/user/signup",
                 data: {
-                    
                         name: $("#signupName").val(),
                         password: $("#signupPassword").val(),
                         email: $("#signupEmail").val()

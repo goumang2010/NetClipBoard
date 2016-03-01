@@ -1,5 +1,5 @@
 ﻿/// <reference path="../Scripts/typings/mongoose/mongoose.d.ts" />
-import mongoose = require('mongoose');
+import mongoose=require('mongoose');
 
 
 var NoteSchema = new mongoose.Schema({

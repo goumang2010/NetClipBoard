@@ -10,6 +10,18 @@ function signup(req, res) {
         }
         else {
             console.log(user_saved);
+            //write cookie and session
+            req.session.userinfo = user_saved.name;
+            req.cookies.userinfo = user_saved.name;
+            //expire after 1 hour
+            var hour = 3600000;
+            req.session.cookie.expires = new Date(Date.now() + hour);
+            req.session.cookie.maxAge = hour;
+            req.session.save(function (err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
             res.end("success");
         }
     });

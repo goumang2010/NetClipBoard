@@ -1,4 +1,4 @@
-﻿
+﻿/// <reference path="../Scripts/typings/tsd.d.ts" />
 /*
  * GET home page.
  */
@@ -11,7 +11,7 @@ var Note = <mongoose.Model<mongoose.Document>>noteraw;
 //var NoteSchema = <mongoose.Schema> noteschema 
 import _ = require('underscore');
 export function index(req: express.Request, res: express.Response) {
-    res.render('index', { title: 'NetClipBoard', year: new Date().getFullYear() });
+    res.render('index', { title: 'NetClipBoard', year: new Date().getFullYear(),userinfo:req.session.userinfo });
 
 };
 

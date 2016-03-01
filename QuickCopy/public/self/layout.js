@@ -1,3 +1,4 @@
+/// <reference path="../typings/tsd.d.ts" />
 $(function () {
     var sch = $(document).height() - $(window).height();
     //监视滚动，适时隐藏导航栏
@@ -133,4 +134,3 @@ function toaWin(content, state) {
     };
     toastr[state](content);
 }
-//# sourceMappingURL=layout.js.map
