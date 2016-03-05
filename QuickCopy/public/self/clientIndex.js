@@ -1,19 +1,9 @@
+/// <reference path="../typings/tsd.d.ts" />
+/// <reference path="./layout.ts" />
 $(function () {
     var $note = $('#noteText');
     var $key = $("#key");
     var keycode;
-    function addLoadEvent(func) {
-        var oldonload = window.onload;
-        if (typeof window.onload != 'function') {
-            window.onload = func;
-        }
-        else {
-            window.onload = function () {
-                oldonload(null);
-                func();
-            };
-        }
-    }
     addLoadEvent(function () {
         showQR(location.href, false);
         $note.focus();
@@ -46,7 +36,7 @@ $(function () {
             data: {
                 //需使用val才能在一些移动端取得输入的文本，不能使用text
                 noteText: notetext,
-                keepkey: $('#keepkey').is(":checked"),
+                keepkey: $('#keepkey').is(":checked")
             },
             type: 'post',
             cache: false,
@@ -70,7 +60,7 @@ $(function () {
         $.ajax({
             url: 'ajaxfetch',
             data: {
-                key: keytext,
+                key: keytext
             },
             type: 'post',
             cache: false,
@@ -152,4 +142,3 @@ $(function () {
         document.execCommand("copy");
     });
 });
-//# sourceMappingURL=clientIndex.js.map

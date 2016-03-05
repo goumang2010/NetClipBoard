@@ -50,12 +50,15 @@ export function signup(req: express.Request, res: express.Response) {
         else {
             console.log(user_saved);
             //write cookie and session
-            req.cookies.userinfocok = user_saved.name;
-            new method.sess(req).setitem("userinfosess",user_saved.name)
             //expire after 1 hour
             var hour = 3600000;
-            req.session.cookie.expires = new Date(Date.now() + hour);
-            req.session.cookie.maxAge = hour;
+            var opt = {
+                expires: new Date(Date.now() + hour).toUTCString(),
+                maxAge:hour
+            };
+            console.log(opt);
+            res.setHeader('Set-Cookie', method.serialize('usrinfo', user_saved.name, opt) );
+            new method.sess(req).setitem("userinfosess",user_saved.name)
             req.session.save(function(err) {
               if (err) {
                 console.log(err);

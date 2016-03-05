@@ -1,6 +1,8 @@
+"use strict";
 /// <reference path="../Scripts/typings/tsd.d.ts" />
 var async = require('async');
 var userraw = require('../Models/userModel');
+var method = require('./sharedmethod');
 var User = userraw;
 function signup(req, res) {
     var _user = req.body;
@@ -42,13 +44,15 @@ function signup(req, res) {
                 else {
                     console.log(user_saved);
                     //write cookie and session
-                    var sess = req.session;
-                    sess.userinfosess = user_saved.name;
-                    req.cookies.userinfocok = user_saved.name;
                     //expire after 1 hour
                     var hour = 3600000;
-                    req.session.cookie.expires = new Date(Date.now() + hour);
-                    req.session.cookie.maxAge = hour;
+                    var opt = {
+                        expires: new Date(Date.now() + hour).toUTCString(),
+                        maxAge: hour
+                    };
+                    console.log(opt);
+                    res.setHeader('Set-Cookie', method.serialize('usrinfo', user_saved.name, opt));
+                    new method.sess(req).setitem("userinfosess", user_saved.name);
                     req.session.save(function (err) {
                         if (err) {
                             console.log(err);

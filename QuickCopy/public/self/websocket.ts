@@ -1,5 +1,6 @@
 ﻿//由于自定义变量较多，故采用匿名函数来封装
 //参考socket.io 的example
+/// <reference path="../typings/tsd.d.ts" />
 $(function () {
     var FADE_TIME = 150; // ms
     var TYPING_TIMER_LENGTH = 400; // ms

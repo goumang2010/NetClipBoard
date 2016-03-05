@@ -1,3 +1,4 @@
+"use strict";
 var method = require('./sharedmethod');
 function websocket(req, res) {
     var lasttext = req.query.text;

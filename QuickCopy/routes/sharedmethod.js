@@ -1,3 +1,4 @@
+"use strict";
 //import punycode = require('punycode');
 //获取用户IP
 function getClientIp(req) {
@@ -33,7 +34,7 @@ function serialize(name, val, opt) {
     if (opt.path)
         pairs.push('Path=' + opt.path);
     if (opt.expires)
-        pairs.push('Expires=' + opt.exppires.toUTCString());
+        pairs.push('Expires=' + opt.expires);
     if (opt.httpOnly)
         pairs.push('HttpOnly');
     if (opt.secure)
@@ -53,5 +54,5 @@ var sess = (function () {
         this.session[name] = value;
     };
     return sess;
-})();
+}());
 exports.sess = sess;

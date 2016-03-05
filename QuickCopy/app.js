@@ -1,3 +1,4 @@
+"use strict";
 /// <reference path="./Scripts/typings/tsd.d.ts" />
 var express = require('express');
 //路由
@@ -30,47 +31,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(compression()); //use compression 
 app.use(stylus.middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(app.router);
-app.get('/', routes.index);
-app.get('/about', routes.about);
-app.get('/contact', routes.contact);
-//WenbSocket页面
-app.get('/websocket', socketctrl.websocket);
-//增加note
-app.post('/addnote', routes.addnote);
-//通过get取得note
-app.get('/fetch', routes.fetch);
-//通过ajax取得note
-app.post('/ajaxfetch', routes.ajaxfetch);
-//注册
-app.post('/user/signup', user.signup);
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
-// error handlers
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use(function (err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
-}
-// production error handler
-// no stacktraces leaked to user
-app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
 var dbUrl = 'mongodb://localhost/netnote';
 var session = require('express-session');
 mongoose.connect(dbUrl, function (err) {
@@ -85,6 +45,47 @@ mongoose.connect(dbUrl, function (err) {
         saveUninitialized: true,
         resave: true
     }));
+    //app.use(app.router);
+    app.get('/', routes.index);
+    app.get('/about', routes.about);
+    app.get('/contact', routes.contact);
+    //WenbSocket页面
+    app.get('/websocket', socketctrl.websocket);
+    //增加note
+    app.post('/addnote', routes.addnote);
+    //通过get取得note
+    app.get('/fetch', routes.fetch);
+    //通过ajax取得note
+    app.post('/ajaxfetch', routes.ajaxfetch);
+    //注册
+    app.post('/signup', user.signup);
+    // catch 404 and forward to error handler
+    app.use(function (req, res, next) {
+        var err = new Error('Not Found');
+        err.status = 404;
+        next(err);
+    });
+    // error handlers
+    // development error handler
+    // will print stacktrace
+    if (app.get('env') === 'development') {
+        app.use(function (err, req, res, next) {
+            res.status(err.status || 500);
+            res.render('error', {
+                message: err.message,
+                error: err
+            });
+        });
+    }
+    // production error handler
+    // no stacktraces leaked to user
+    app.use(function (err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: {}
+        });
+    });
     var server = app.listen(3000);
     //WebSocket处理
     socketio.listen(server).on('connection', socketctrl.socketlitener);

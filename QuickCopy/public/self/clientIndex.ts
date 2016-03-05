@@ -4,17 +4,7 @@ $(function () {
 var $note = $('#noteText');
     var $key = $("#key");
     var keycode;
-    function addLoadEvent(func) {
-        var oldonload = window.onload;
-        if (typeof window.onload != 'function') {
-            window.onload = func;
-        } else {
-            window.onload = function () {
-                oldonload(null);
-                func();
-            }
-        }
-    }
+
     addLoadEvent(function () {
         showQR(location.href, false);
         $note.focus();

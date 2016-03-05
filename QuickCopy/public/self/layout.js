@@ -11,6 +11,7 @@ $(function () {
             $(".navbar").show();
         }
     });
+    addLoadEvent(stripstate());
     function replaceClass(pp, oldcls, newcls) {
         var cln = pp.className;
         cln = cln.replace(oldcls, "");
@@ -54,10 +55,24 @@ $(function () {
             }
         }
     };
+    function stripstate() {
+        //check the cookie
+        var useringocok = Cookies.get('usrinfo');
+        if (useringocok) {
+            //set the name
+            $('#username').text(useringocok);
+            $('#loginM').hide();
+            $('#exitM').show();
+        }
+        else {
+            $('#loginM').show();
+            $('#exitM').hide();
+        }
+    }
     function signupop() {
         options.submitHandler = function (form) {
             $.ajax({
-                url: "/user/signup",
+                url: "/signup",
                 data: {
                     name: $("#signupName").val(),
                     password: $("#signupPassword").val(),
@@ -70,6 +85,7 @@ $(function () {
                         case '100':
                             $('#signupModal').modal('hide');
                             toaWin("注册成功！请尝试新的内容");
+                            stripstate();
                             break;
                         case '101':
                             toaWin("注册失败！" + "用户名重复");
@@ -92,7 +108,7 @@ $(function () {
     function signinop() {
         options.submitHandler = function (form) {
             $.ajax({
-                url: "/user/signin",
+                url: "/signin",
                 data: {
                     name: $("#signinName").val(),
                     password: $("#signinPassword").val()
@@ -141,4 +157,16 @@ function toaWin(content, state) {
         hideMethod: "fadeOut"
     };
     toastr[state](content);
+}
+function addLoadEvent(func) {
+    var oldonload = window.onload;
+    if (typeof window.onload != 'function') {
+        window.onload = func;
+    }
+    else {
+        window.onload = function () {
+            oldonload(null);
+            func();
+        };
+    }
 }

@@ -1,3 +1,4 @@
+"use strict";
 /// <reference path="../Scripts/typings/mongoose/mongoose.d.ts" />
 var mongoose = require('mongoose');
 var NoteSchema = new mongoose.Schema({

@@ -77,7 +77,7 @@ mongoose.connect(dbUrl, function (err: any) {
     //通过ajax取得note
     app.post('/ajaxfetch', routes.ajaxfetch);
     //注册
-    app.post('/user/signup', user.signup);
+    app.post('/signup', user.signup);
 
     // catch 404 and forward to error handler
 app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {
