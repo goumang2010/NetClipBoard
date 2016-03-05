@@ -116,12 +116,21 @@ $(function () {
                 type: 'post',
                 cache: false,
                 success: function (data) {
-                    if (data == "success") {
-                        $('#signinModal').modal('hide');
-                        toaWin("登录成功！请尝试新的内容");
-                    }
-                    else {
-                        toaWin("注册失败！" + data, "error");
+                    switch (data) {
+                        case '200':
+                            $('#signinModal').modal('hide');
+                            toaWin("登录成功！请尝试新的内容");
+                            stripstate();
+                            break;
+                        case '201':
+                            toaWin("登录失败！" + "未找到用户名");
+                            break;
+                        case '202':
+                            toaWin("登录失败！" + "密码失败");
+                            break;
+                        default:
+                            toaWin("登录失败！" + data + "error");
+                            break;
                     }
                 },
                 error: function (err) {

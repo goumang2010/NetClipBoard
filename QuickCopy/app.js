@@ -59,6 +59,8 @@ mongoose.connect(dbUrl, function (err) {
     app.post('/ajaxfetch', routes.ajaxfetch);
     //注册
     app.post('/signup', user.signup);
+    //登录
+    app.post('/signin', user.signin);
     // catch 404 and forward to error handler
     app.use(function (req, res, next) {
         var err = new Error('Not Found');

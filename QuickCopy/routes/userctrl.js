@@ -1,5 +1,6 @@
 "use strict";
 /// <reference path="../Scripts/typings/tsd.d.ts" />
+var bcrypt = require('bcrypt');
 var async = require('async');
 var userraw = require('../Models/userModel');
 var method = require('./sharedmethod');
@@ -43,22 +44,7 @@ function signup(req, res) {
                 }
                 else {
                     console.log(user_saved);
-                    //write cookie and session
-                    //expire after 1 hour
-                    var hour = 3600000;
-                    var opt = {
-                        expires: new Date(Date.now() + hour).toUTCString(),
-                        maxAge: hour
-                    };
-                    console.log(opt);
-                    res.setHeader('Set-Cookie', method.serialize('usrinfo', user_saved.name, opt));
-                    new method.sess(req).setitem("userinfosess", user_saved.name);
-                    req.session.save(function (err) {
-                        if (err) {
-                            console.log(err);
-                        }
-                    });
-                    console.log("save data");
+                    setcs(req, res, user_saved.name);
                     res.end("100");
                     return;
                 }
@@ -70,3 +56,58 @@ function signup(req, res) {
     });
 }
 exports.signup = signup;
+function signin(req, res) {
+    console.log("signin start");
+    var _user = req.body;
+    var user = new User({ name: _user.name, password: _user.password, email: _user.email });
+    //OK --200
+    //name not found --201
+    //password not found --202
+    //other errors --203
+    console.log("check name");
+    User.findOne({ "name": _user.name }, function (err, bsonres) {
+        //if any err or name not found,then return 201
+        if (err || (bsonres == null)) {
+            res.end("201");
+            return;
+        }
+        else {
+            var encryptedkey = bsonres.get("password");
+            bcrypt.compare(_user.password, encryptedkey, function (err, same) {
+                if (err) {
+                    res.end("203");
+                    return;
+                }
+                else {
+                    if (same) {
+                        //set cookie and session
+                        setcs(req, res, _user.name);
+                        res.end("200");
+                        return;
+                    }
+                    else {
+                        res.end("202");
+                        return;
+                    }
+                }
+            });
+        }
+    });
+}
+exports.signin = signin;
+function setcs(req, res, username) {
+    //write cookie and session
+    //expire after 1 hour
+    var hour = 3600000;
+    var opt = {
+        expires: new Date(Date.now() + hour).toUTCString(),
+        maxAge: hour
+    };
+    res.setHeader('Set-Cookie', method.serialize('usrinfo', username, opt));
+    new method.sess(req).setitem("userinfosess", username);
+    req.session.save(function (err) {
+        if (err) {
+            console.log(err);
+        }
+    });
+}

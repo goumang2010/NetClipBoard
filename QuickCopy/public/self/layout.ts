@@ -1,9 +1,9 @@
 ﻿/// <reference path="../typings/tsd.d.ts" />
-$(function () {
+$(function() {
 
     var sch = $(document).height() - $(window).height();
     //监视滚动，适时隐藏导航栏
-    $(window).scroll(function () {
+    $(window).scroll(function() {
         var tval = $(document).scrollTop();
         if (tval >= sch) {
             $(".navbar").fadeOut();
@@ -13,27 +13,27 @@ $(function () {
         }
     });
     addLoadEvent(stripstate());
-    function replaceClass(pp:HTMLElement,oldcls:string,newcls:string) {
-        var  cln=pp.className
+    function replaceClass(pp: HTMLElement, oldcls: string, newcls: string) {
+        var cln = pp.className
         cln = cln.replace(oldcls, "");
         if (cln.indexOf(newcls) == -1) {
-            cln += " "+newcls;
+            cln += " " + newcls;
         }
         pp.className = cln;
     }
     //对注册登录输入输出进行校验
     var options: JQueryValidation.ValidationOptions = {
-        showErrors: function (errorMap, errorList) {
-            errorList.forEach(function (p) {
-                replaceClass(p.element.parentElement, "has-success","has-error");
+        showErrors: function(errorMap, errorList) {
+            errorList.forEach(function(p) {
+                replaceClass(p.element.parentElement, "has-success", "has-error");
             });
             this.defaultShowErrors();
         },
-        success: function (label) {
+        success: function(label) {
             var fg = label.parent(".form-group");
             fg.removeClass("has-error").addClass("has-success");
         },
-       rules: {
+    rules: {
             name: "required",
             password: {
                 required: true,
@@ -57,98 +57,104 @@ $(function () {
         }
     }
 
-    function stripstate(){
+    function stripstate() {
     //check the cookie
-      var useringocok= Cookies.get('usrinfo');
-      if (useringocok)
-      {
-        //set the name
-        $('#username').text(useringocok);
-             $('#loginM').hide();
+    var useringocok = Cookies.get('usrinfo');
+    if (useringocok) {
+      //set the name
+      $('#username').text(useringocok);
+      $('#loginM').hide();
       $('#exitM').show();
-      }
-      else
-      {
+    }
+    else {
       $('#loginM').show();
       $('#exitM').hide();
-      }
+    }
 
-          }
+  }
 
-  
-   function signupop () {
-        options.submitHandler = function (form) {
+
+  function signupop() {
+        options.submitHandler = function(form) {
             $.ajax({
                 url: "/signup",
                 data: {
-                        name: $("#signupName").val(),
-                        password: $("#signupPassword").val(),
-                        email: $("#signupEmail").val()
+          name: $("#signupName").val(),
+          password: $("#signupPassword").val(),
+          email: $("#signupEmail").val()
                 },
                 type: 'post',
                 cache: false,
-                success: function (data) {
-                  switch(data)
-                  {
-                    case '100':
-                        $('#signupModal').modal('hide');
-                        toaWin("注册成功！请尝试新的内容");
-                        stripstate();
-                        break;
-                     case '101':
-                         toaWin("注册失败！"+"用户名重复");
-                         break;
-                      case '102':
-                         toaWin("注册失败！"+"邮箱地址重复");
-                         break;
-                      default:
-                         toaWin("注册失败！"+data+"error");
-                         break;
+                success: function(data) {
+          switch (data) {
+            case '100':
+              $('#signupModal').modal('hide');
+              toaWin("注册成功！请尝试新的内容");
+              stripstate();
+              break;
+            case '101':
+              toaWin("注册失败！" + "用户名重复");
+              break;
+            case '102':
+              toaWin("注册失败！" + "邮箱地址重复");
+              break;
+            default:
+              toaWin("注册失败！" + data + "error");
+              break;
 
-                  }
+          }
 
                 },
-                error: function (err) {
+                error: function(err) {
                     errHandle(err);
                 }
             });
-            
-       }
+
+    }
         return options;
     }
-   function signinop() {
-       options.submitHandler = function (form) {
-           $.ajax({
-               url: "/signin",
-               data: {
+  function signinop() {
+    options.submitHandler = function(form) {
+      $.ajax({
+        url: "/signin",
+        data: {
 
-                   name: $("#signinName").val(),
-                   password: $("#signinPassword").val()
+          name: $("#signinName").val(),
+          password: $("#signinPassword").val()
 
-               },
-               type: 'post',
-               cache: false,
-               success: function (data) {
-                   if (data == "success") {
-                       $('#signinModal').modal('hide');
-                       toaWin("登录成功！请尝试新的内容");
-                   }
-                   else {
-                       toaWin("注册失败！" + data, "error");
+        },
+        type: 'post',
+        cache: false,
+        success: function(data) {
+      switch (data) {
+        case '200':
+          $('#signinModal').modal('hide');
+          toaWin("登录成功！请尝试新的内容");
+          stripstate();
+          break;
+        case '201':
+          toaWin("登录失败！" + "未找到用户名");
+          break;
+        case '202':
+          toaWin("登录失败！" + "密码失败");
+          break;
+        default:
+          toaWin("登录失败！" + data + "error");
+          break;
 
-                   }
+      }
 
-               },
-               error: function (err) {
-                   errHandle(err);
-               }
-           });
+    },
+        error: function(err) {
+          errHandle(err);
+        }
+      });
 
-       }
-       return options;
-   }
-   $("#signupForm").validate(signupop());
-   $("#signinForm").validate(signinop());
+    }
+    return options;
+  }
+  $("#signupForm").validate(signupop());
+  $("#signinForm").validate(signinop());
 });
 
 function errHandle(err) {
